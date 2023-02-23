@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-light dark:bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-700;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-600;
+}
+
+*:not(div, .unthemed, .text) {
+    @apply bg-light text-dark stroke-dark dark:bg-dark dark:text-light dark:stroke-light;
+}
+
+header[role="app-region"],
+main[role="body-container"] {
+    @apply w-full;
+}
+
+.flexing {
+    @apply justify-center content-center items-center gap-3;
+}
+
+.block-text {
+    @apply block;
+}
+
+div[role="form-wrapper"] .welcome-note {
+    @apply text-xl font-black self-start;
+}
+
+div[role="form-wrapper"] .footer-note {
+    @apply text-xs self-start;
+}
+
+.rounded-image {
+    @apply overflow-hidden rounded-full bg-slate-700;
+}
+
+.rounded-image .image-wrapper img {
+    @apply w-full h-full object-cover;
+}
+
+.image-wrapper {
+    @apply w-full h-full p-3 bg-gray-300 dark:bg-slate-500;
+}
+
+p#loading-text {
+    @apply animate-pulse duration-100 delay-100;
+}
+
+[type="button"] {
+    @apply min-w-[100px] border py-1 px-5 rounded-full text-sm cursor-pointer ease-out active:opacity-80;
+}
+
+[type="button"]:disabled,
+[type="button"].disabled {
+    @apply pointer-events-none opacity-50;
+}
+
+[type="button"][role="primary"] {
+    @apply bg-primary border-primary text-light;
+}
+
+[type="button"][role="secondary"] {
+    @apply border-secondary hover:text-dark hover:bg-gray-300 hover:dark:text-white hover:dark:bg-gray-700;
+}
+
+.toggled[type="button"][role="secondary"] {
+    @apply bg-gray-300 dark:bg-gray-600;
+}
+
+.toggled[type="button"][role="secondary"] svg {
+    @apply fill-dark dark:fill-light;
+}
+
+[type="button"][role="danger"] {
+    @apply border-danger text-danger hover:text-white hover:bg-danger;
+}
+
+[type="button"]#profile {
+    @apply pl-1;
+}
+
+input[type="text"],
+input[type="password"] {
+    @apply border rounded-full py-1 px-8 border-secondary bg-transparent focus:border-primary;
+}
+
+input[check="error"] {
+    @apply border-danger;
+}
+
+input[check="ok"] {
+    @apply border-success;
+}
+
+input[name="username"],
+input[name="password"] {
+    @apply text-center lowercase;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    @apply rounded-full h-[6px] outline-none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @apply bg-primary h-3 w-3 rounded-full cursor-pointer;
+}
+
+input[type="range"].display-only::-webkit-slider-thumb {
+    @apply hidden;
+}
+
+a {
+    @apply text-primary active:opacity-80;
+}
+
+nav {
+    @apply h-full shadow-md dark:shadow-slate-700;
+}
+
+.unavailability:empty::after {
+    content: "no event available yet";
+    @apply text-xs font-semibold italic opacity-30 lowercase;
+}
+
+.ui-component {
+    @apply w-fit h-fit rounded-md;
+}
+
+.date-box {
+    @apply w-fit h-fit rounded-md py-1 px-4 text-center aspect-square bg-slate-200 dark:bg-slate-700;
+}
+
+.date-box span:nth-child(1) {
+    @apply block-text font-black text-lg tracking-widest;
+}
+
+.date-box span:nth-child(2) {
+    @apply block-text font-normal text-2xs opacity-70 capitalize;
+}
+
+/* Highcharts */
+.highcharts-credits {
+    @apply hidden;
+}
+
+div[role="tooltip"] {
+    @apply absolute z-50 inline-block p-2 text-xs font-semibold rounded-full opacity-90 shadow-sm transition-opacity duration-300 bg-slate-200 shadow-gray-200 dark:bg-gray-700 dark:shadow-gray-700;
+}
+
+#S4P1 .assignment-block {
+    @apply block h-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-600;
+}
+
+#S4P1 .assignment-block.submission-late {
+    @apply animate-pulse border-danger hover:animate-none;
+}
+
+.assignment-block .backdrop, .module-block .backdrop, .description-block .backdrop {
+    background: linear-gradient(120deg, #5668e1 0%, #d54241 100%);
+    @apply absolute rounded-xl w-full h-full opacity-5 z-10;
+}
+
+#S4P1 .assignment-block[in="attention"] .backdrop {
+    background: rgb(96, 165, 250);
+    @apply opacity-10;
+}
+
+#S4P1 .assignment-block[in="critical"] .backdrop {
+    background: rgb(251, 191, 36);
+    @apply opacity-10;
+}
+
+#S4P1 .assignment-block[in="danger"] .backdrop {
+    background: rgb(248, 113, 113);
+    @apply opacity-10;
+}
+
+#S4P1 .assignment-block[in="attention"] .count-down span {
+    @apply text-blue-400 font-semibold animate-pulse;
+}
+
+#S4P1 .assignment-block[in="critical"] .count-down span {
+    @apply text-amber-400 font-semibold animate-pulse;
+}
+
+#S4P1 .assignment-block[in="danger"] .count-down span {
+    @apply text-red-400 font-semibold animate-pulse;
+}
+
+.assignment-block .assignment-content {
+    @apply grid relative h-full gap-3 p-2 z-20;
+}
+
+.assignment-content [role="body"] {
+    @apply grid grid-rows-[fit-content(48px)_1fr] max-w-full overflow-hidden gap-3;
+}
+
+.assignment-content div[role="header"] {
+    @apply block overflow-hidden w-full capitalize;
+}
+
+.assignment-content [role="footer"] {
+    @apply grid grid-cols-[1fr_1fr];
+}
+
+.assignment-content [role="footer"] .chart-container:not(:empty){
+    @apply w-fit h-16 -mt-3 -ml-3;
+}
+
+fieldset {
+    @apply py-3 overflow-hidden border-t border-gray-300 dark:border-gray-500;
+}
+
+fieldset legend {
+    @apply pr-3 uppercase font-semibold text-xs tracking-widest text-gray-400;
+}
+
+
+@media (min-height: 700px) {
+    div[role="side-panel"] .ui-component:last-child {
+        @apply block;
+    }
+}
+
+#S4P4 .module-block {
+    @apply block h-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-600;
+}
+
+.module-block .module-content {
+    @apply grid relative h-full gap-3 p-2 z-20;
+}
+
+.module-content [role="body"] {
+    @apply grid grid-rows-[1fr_1fr] max-w-full overflow-hidden gap-3;
+}
+
+.module-content div[role="header"] {
+    @apply block overflow-hidden w-full capitalize;
+}
+
+.module-content [role="footer"] {
+    @apply grid grid-cols-1;
+}
+
+#S4P9 .description-block {
+    @apply block h-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-600;
+}
+
+.description-block .description-content {
+    @apply grid relative h-full gap-3 p-2 z-20;
+}
+
+.description-content [role="body"] {
+    @apply grid grid-rows-[1fr_1fr] max-w-full overflow-hidden gap-3;
+}
+
+.description-content div[role="header"] {
+    @apply block overflow-hidden w-full capitalize;
+}
+
+.description-content [role="footer"] {
+    @apply grid grid-cols-1;
+}
