@@ -1,0 +1,19 @@
+{
+  "name": "assignder",
+  "productName": "Assignder",
+  "version": "1.0.0-alpha",
+  "description": "",
+  "main": "Public\\JavaScript\\Electron\\index.js",
+  "scripts": {
+    "build": "tailwindcss build -i Sources/Styles/tailwindcssin.css -o Public/Styles/tailwindcssout.css --watch",
+    "start": "set NODE_ENV=development&&electron ."
+  },
+  "author": "Alpha CodeNox",
+  "license": "GNU",
+  "devDependencies": {
+    "electron": "^22.1.0"
+  },
+  "dependencies": {
+    "electron-reloader": "^1.2.3"
+  }
+}
