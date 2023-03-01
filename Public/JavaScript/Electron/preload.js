@@ -1,3 +1,9 @@
+// preload.js
+const { contextBridge, ipcRenderer } = require('electron');
+
+// Expose ipcRenderer to the renderer process
+contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer);
+
 window.onload = () => {
     updateTime();
     updateDate();
@@ -32,4 +38,9 @@ const updateDate = () => {
         year: "numeric"
     });
     document.getElementById("current-date").innerText = formattedDate;
+}
+
+// Inter Process Communications
+const ipcThemeChange = () => {
+    ipcRenderer.send("theme-change", appTheme);
 }

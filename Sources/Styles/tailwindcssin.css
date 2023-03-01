@@ -368,3 +368,4 @@ div[role="side-panel"] .count-down {
 div[role="side-panel"] .count-down span:not(:first-child) {
     @apply pl-1;
 }
+

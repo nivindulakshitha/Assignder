@@ -3,16 +3,17 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            main: {
-                configs: {
-                    response: 2
-                },
-                sections: {
-                    2: {
-                        img: "../Images/person.jpg"
-                    }
-                }
-            }
+            
         };
     },
+
+    methods: {
+        handlePageOpening(event, sectionId) {
+            sectionOpener(event, sectionId); // Ref: Assignder/index
+        },
+
+        handleAppThemeChange() {
+            switchAppTheme(); // Ref: Assignder/index
+        }
+    }
 }).mount("#assignderApplication");

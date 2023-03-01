@@ -1,12 +1,13 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const appJson = require("../Json/app.json")
 require("electron-reloader")(module);
 
 var appTheme = appJson.app.theme;
+var assignder;
 
 function createWindow() {
-    const assignder = new BrowserWindow({
+    assignder = new BrowserWindow({
         width: 900,
         height: 620,
         minWidth: 900,
@@ -28,13 +29,14 @@ function createWindow() {
             safeDialogs: true,
             accessibleTitle: "Assignder © Alpha CodeNox",
             spellcheck: false,
-
+            nodeIntegration: true,
+            contextIsolation: true,
+            enableRemoteModule: true
         }
     });
     
     assignder.loadFile("Public\\HTML\\index.html");
-    assignder.webContents.openDevTools()
-
+    assignder.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
@@ -52,3 +54,6 @@ app.on("window-all-closed", () => {
         app.quit();
     }
 });
+
+
+// Inter Process Communications
