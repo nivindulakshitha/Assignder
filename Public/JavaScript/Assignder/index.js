@@ -51,6 +51,8 @@ function loadingComponent(open) {
 // switch between themes
 function switchAppTheme() {
     let pushTheme = document.getElementsByTagName("html")[0];
+    popupTextChanger("ok", "In order to apply the changes to the entire program, please restart the application. Some changes made will not take effect until the application has been restarted.");
+
     if (appTheme == "light") {
         pushTheme.classList.remove("light");
         pushTheme.classList.add("dark");
@@ -84,3 +86,36 @@ window.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("resize", () => {
     pageS4P1(0);
 });
+
+
+// universal unique ID generator
+function generateUUID() {
+    return uuid.v4().toUpperCase(); // Ref: Electron/preload
+}
+
+// popup text changes
+function popupTextChanger(target, text) {
+    const element = document.getElementById(target).getElementsByTagName("h3")[0];
+    element.innerText = text;
+}
+
+// letter profile image generator
+function generateImageFromName(name) {
+    const words = name.split(" ");
+    const firstLetters = words.map(word => word.charAt(0)).slice(0, 2);
+    const canvas = document.createElement("canvas");
+    canvas.width = 300;
+    canvas.height = 300;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgba(255, 255, 255, .1)";
+    ctx.fillRect(0, 0, 300, 300);
+    ctx.font = "bold 150px consolas";
+    ctx.fillStyle = "rgba(255, 255, 255, 1)";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(firstLetters.join("").toUpperCase(), canvas.width / 2, canvas.height / 2);
+    const dataURL = canvas.toDataURL();
+
+    return dataURL;
+}
+  

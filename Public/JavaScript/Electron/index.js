@@ -57,3 +57,39 @@ app.on("window-all-closed", () => {
 
 
 // Inter Process Communications
+/* const fs = require('fs');
+
+// Replace "ApplicationName" with the name of the application you want to retrieve information for
+const appName = 'Microsoft Office 15/ClientX64/OfficeClickToRun.exe';
+const programFilesPath = process.env.ProgramFiles;
+const appPath = path.join(programFilesPath, appName);
+
+try {
+  const stats = fs.statSync(appPath);
+
+  console.log(appPath);
+  const sizeInBytes = stats.size;
+  const sizeInMB = sizeInBytes / 1024 / 1024;
+
+  console.log('Size:', sizeInMB, 'MB');
+} catch (error) {
+  console.error(`Error: ${error.message}`);
+}
+
+const ps = require('ps-node');
+
+const app2Name = 'AssignderNMGR';
+
+ps.lookup({ command: app2Name }, (err, resultList) => {
+  if (err) {
+    throw new Error(err);
+  }
+
+  const isRunning = resultList.length > 0;
+
+  if (isRunning) {
+    console.log(`${app2Name} is running.`);
+  } else {
+    console.log(`${app2Name} is not running.`);
+  }
+}); */

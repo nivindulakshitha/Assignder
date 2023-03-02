@@ -34,6 +34,7 @@
     <script src="../JavaScript/Vue/vue.global.js" defer></script>
     <script src="../JavaScript/Vue/index.js" defer></script>
     <script src="../JavaScript/Assignder/index.js" defer></script>
+
 </head>
 
 <body id="assignderApplication" class="border border-blue-900">
@@ -130,7 +131,7 @@
             </div>
         </section>
 
-        <section class="unthemed" featuring="application-interface" id="4">
+        <section class="grid unthemed" featuring="application-interface" id="4">
             <nav>
                 <ul class="unthemed flexing">
                     <li class="flexing relative esc-region">
@@ -219,7 +220,7 @@
                         </div>
                     </li>
                     <div class="flex-grow"></div>
-                    <li @click="handleAppThemeChange()" class="flexing" active="asTheme" data-tooltip-target="4N8" data-tooltip-placement="right">
+                    <li @click="handleAppThemeChange()" data-modal-target="ok" data-modal-toggle="ok" class="flexing" active="asTheme" data-tooltip-target="4N8" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -276,6 +277,7 @@
                     </li>
                 </ul>
             </nav>
+
             <div class="unthemed grid flexing" role="ui-content">
                 <div class="flex flexing" role="top-panel">
                     <div class="buttons-holder flexing">
@@ -312,10 +314,11 @@
                         </svg>
                     </div>
                 </div>
+
                 <div class="flexing" role="body-holder">
                     <div class="page-container">
                         <div class="hidden page unavailability" name="home" id="S4P1">
-                            <div class="block relative assignment-block" in="critical">
+                            <div class="block relative assignment-block" in="danger">
                                 <div class="backdrop z-10"></div>
                                 <p class="unthemed" name="order">01</p>
                                 <div class="assignment-content">
@@ -388,7 +391,7 @@
                             <div class="flexing relative assignment-block" name="new-assignment">
                                 <div class="backdrop z-10"></div>
                                 <div class="flex flexing buttons-holder">
-                                    <input class="relative z-20 unthemed" type="button" value="Add new" role="secondary">
+                                    <input data-modal-target="assignment-modal" data-modal-toggle="assignment-modal" class="relative z-20 unthemed" type="button" value="Create" role="secondary">
                                 </div>
                             </div>
                         </div>
@@ -463,7 +466,7 @@
                             <div class="block relative module-block" name="new-module">
                                 <div class="backdrop z-10"></div>
                                 <div class="flex flexing buttons-holder w-full h-full">
-                                    <input class="unthemed relative z-20" type="button" value="Add new" role="secondary">
+                                    <input class="unthemed relative z-20" type="button" value="Create" role="secondary">
                                 </div>
                             </div>
                         </div>
@@ -809,13 +812,13 @@ The GNU General Public License does not permit incorporating your program into p
                             </fieldset>
                         </div>
 
-                        <div class="hidden flexing page" name="popups-holder" id="S4P7">
-                            <div id="cancel-delete" tabindex="-1" class=" unthemed fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-                                <div class=" unthemed relative w-full h-full max-w-md md:h-auto">
-                                    <div class=" unthemed relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="grid flexing page" name="popups-holder" id="S4P7">
+                            <div id="cancel-delete" tabindex="-1" class="unthemed popup-block hidden h-modal">
+                                <div class="unthemed popup-wrapper">
+                                    <div class="unthemed popup-backdrop">
                                         <div class="p-6 text-center unthemed ">
-                                            <svg aria-hidden="true" class=" unthemed mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                            <h3 class=" unthemed mb-5 text-sm font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete the assignment?</h3>
+                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <h3 class="unthemed"></h3>
                                             <div class="flex flexing">
                                                 <div class="flex flexing buttons-holder">
                                                     <input data-modal-hide="cancel-delete" class="unthemed" type="button" value="Cancel" role="secondary">
@@ -826,8 +829,62 @@ The GNU General Public License does not permit incorporating your program into p
                                     </div>
                                 </div>
                             </div>
+
+                            <div id="ok"  tabindex="-1" class="unthemed popup-block hidden h-modal">
+                                <div class="unthemed popup-wrapper">
+                                    <div class="unthemed popup-backdrop">
+                                        <div class="p-6 text-center unthemed ">
+                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <h3 class="unthemed"></h3>
+                                            <div class="flex flexing">
+                                                <div class="flex flexing buttons-holder">
+                                                    <input data-modal-hide="ok" class="unthemed" type="button" value="Ok" role="primary">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="assignment-modal" tabindex="-1" aria-hidden="true" class="unthemed popup-block hidden h-modal">
+                                <div class="assignmentmodal-wrapper">
+                                    <div class="assignmentmodal-container">
+                                        <div class="px-6 py-6 lg:px-8">
+                                            <div class="unthemed" role="form">
+                                                <p class="unthemed text-xs font-bold my-2">Reference Key</p>
+                                                <input class="unthemed text-xs mb-3" type="text" value="E31DE79D-E13C-48FF-A283-DC76C27A1CF5" style="width: 100%; padding: 12px" disabled>
+
+                                                <p class="unthemed text-xs font-bold my-2">Title</p>
+                                                <input class="unthemed text-xs mb-3" type="text" placeholder="Assignment title" style="width: 100%; padding: 12px">
+
+                                                <p class="unthemed text-xs font-bold my-2">Description</p>
+                                                <textarea class="unthemed w-full h-fit text-xs mb-3"></textarea>
+
+                                                <div class="flex flexing">
+                                                    <div class="flex flexing buttons-holder">
+                                                        <button class="unthemed flexing" type="button" role="secondary">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                                class="w-4 h-4 unthemed">
+                                                                <path class="unthemed stroke-dark dark:stroke-light"
+                                                                    fill-rule="evenodd"
+                                                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <input class="unthemed" type="button" value="Discard" role="secondary">
+                                                        <input class="unthemed" type="button" value="Create" role="primary">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </div>
+
                     <div class="flex flexing" role="side-panel">
                         <div class="unthemed ui-component">
                             <p class="unthemed font-bold text-4xl tracking-widest" id="current-time">

@@ -14,7 +14,10 @@
     "electron": "^22.1.0"
   },
   "dependencies": {
+    "app-path": "^4.0.0",
     "electron-reloader": "^1.2.3",
+    "ps-node": "^0.1.6",
+    "uuid": "^9.0.0",
     "win-api": "^0.0.4"
   }
 }

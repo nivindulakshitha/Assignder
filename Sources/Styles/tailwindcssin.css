@@ -94,7 +94,7 @@ p#loading-text {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"], textarea {
     @apply border rounded-full py-1 px-8 border-secondary bg-transparent focus:border-primary;
 }
 
@@ -369,3 +369,30 @@ div[role="side-panel"] .count-down span:not(:first-child) {
     @apply pl-1;
 }
 
+.popup-block {
+    @apply fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 md:h-full;
+}
+
+.popup-wrapper  {
+    @apply relative w-full h-full max-w-md md:h-auto;
+}
+
+.popup-backdrop {
+    @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
+}
+
+.popup-block h3 {
+    @apply mb-5 text-sm font-normal text-gray-500 dark:text-gray-400;
+}
+
+.popup-block:not(#assignment-modal) svg {
+    @apply mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200;
+}
+
+.assignmentmodal-wrapper {
+    @apply relative w-full h-full max-w-md md:h-auto;
+}
+
+.assignmentmodal-container {
+    @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
+}

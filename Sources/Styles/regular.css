@@ -416,3 +416,7 @@ input[type="range"][role="primary"] {
 #S4P9 {
     gap: 12px;
 }
+
+.popup-block {
+    animation: cover 0.2s ease-out;
+}
