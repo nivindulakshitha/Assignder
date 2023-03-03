@@ -118,4 +118,20 @@ function generateImageFromName(name) {
 
     return dataURL;
 }
-  
+
+
+// Toggle buttons handler
+function toggleButtonsHandler(event) {
+    let target = event.target.closest("button");
+
+    if (target.classList.contains("toggled")) {
+        target.classList.remove("toggled");
+    } else {
+        target.classList.add("toggled");
+    }
+}
+
+// Create a new assignment
+function createNewAssignment() {
+    console.log('called')
+}

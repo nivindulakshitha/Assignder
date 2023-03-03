@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Red Hat Display";
-    src: url("../Fonts/RedHatDisplay-VariableFont_wght.ttf");
+    font-family: "inter";
+    src: url("../Fonts/Inter-VariableFont_slnt\,wght.ttf");
 }
 
 * {
@@ -18,7 +18,7 @@ html,
 body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-family: "Red Hat Display", serif !important;
+    font-family: "inter", serif !important;
     font-size: 18px;
     font-weight: 500;
     height: 100vh;
@@ -368,6 +368,10 @@ input[type="range"][role="primary"] {
     display: flex !important;
 }
 
+.assignment-content .description::-webkit-scrollbar {
+    display: none; 
+}
+
 #S4P4 {
     grid-template-rows: repeat(3, 1fr);
 }
@@ -419,4 +423,48 @@ input[type="range"][role="primary"] {
 
 .popup-block {
     animation: cover 0.2s ease-out;
+}
+
+input.datepicker-element.datepicker-input {
+    background: transparent;
+}
+
+html.light div.datepicker.datepicker-dropdown.dropdown div {
+    background: #fff;
+}
+
+html.dark div.datepicker.datepicker-dropdown.dropdown div {
+    background: #212529;
+}
+
+div.datepicker.datepicker-dropdown div.datepicker-header div.datepicker-controls button {
+    border: unset;
+    min-width: unset;
+}
+
+html.dark div.datepicker.datepicker-dropdown div.datepicker-header div.datepicker-controls button {
+    background-color: #212529;
+}
+
+div.datepicker.datepicker-dropdown div.datepicker-header div.datepicker-controls button:focus {
+    outline: none;
+    border: unset;
+    box-shadow: unset;
+}
+
+#assignment-modal > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div > input {
+    padding: 12px;
+}
+
+#assignment-modal > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div > div {
+    display: none;
+}
+
+#assignment-modal input {
+    font-size: 14px;
+}
+
+#assignment-modal textarea {
+    border-radius: unset;
+    padding: 12px;
 }

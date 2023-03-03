@@ -94,7 +94,8 @@ p#loading-text {
 }
 
 input[type="text"],
-input[type="password"], textarea {
+input[type="password"],
+textarea {
     @apply border rounded-full py-1 px-8 border-secondary bg-transparent focus:border-primary;
 }
 
@@ -179,7 +180,6 @@ nav {
     @apply bg-red-500;
 }
 
-
 div[role="tooltip"] {
     @apply absolute z-50 inline-block p-2 text-xs font-semibold rounded-full opacity-90 shadow-sm transition-opacity duration-300 bg-slate-200 shadow-gray-200 dark:bg-gray-700 dark:shadow-gray-700;
 }
@@ -192,9 +192,10 @@ div[role="tooltip"] {
     @apply animate-pulse border-danger hover:animate-none;
 }
 
-.assignment-block .backdrop, .module-block .backdrop {
+.assignment-block .backdrop,
+.module-block .backdrop {
     background: linear-gradient(120deg, #5668e1 0%, #d54241 100%);
-    @apply absolute rounded-xl w-full h-full opacity-5 z-10;
+    @apply absolute rounded-xl w-full h-full opacity-10 z-10;
 }
 
 #S4P1 .assignment-block[in="attention"] .backdrop {
@@ -212,19 +213,23 @@ div[role="tooltip"] {
     @apply opacity-10;
 }
 
-#S4P1 .assignment-block[in="attention"] .count-down span, div[role="side-panel"] .count-down[in="attention"] span {
+#S4P1 .assignment-block[in="attention"] .count-down span,
+div[role="side-panel"] .count-down[in="attention"] span {
     @apply text-blue-400 font-semibold animate-pulse;
 }
 
-#S4P1 .assignment-block[in="critical"] .count-down span, div[role="side-panel"] .count-down[in="critical"] span {
+#S4P1 .assignment-block[in="critical"] .count-down span,
+div[role="side-panel"] .count-down[in="critical"] span {
     @apply text-amber-400 font-semibold animate-pulse;
 }
 
-#S4P1 .assignment-block[in="danger"] .count-down span, div[role="side-panel"] .count-down[in="danger"] span {
+#S4P1 .assignment-block[in="danger"] .count-down span,
+div[role="side-panel"] .count-down[in="danger"] span {
     @apply text-red-400 font-semibold animate-pulse;
 }
 
-.assignment-block p[name="order"], .module-block p[name="credit"] {
+.assignment-block p[name="order"],
+.module-block p[name="credit"] {
     @apply font-black text-7xl block absolute opacity-10 right-3 top-3;
 }
 
@@ -236,8 +241,13 @@ div[role="tooltip"] {
     @apply grid grid-rows-[fit-content(48px)_1fr] max-w-full overflow-hidden gap-3;
 }
 
-.assignment-content [role="body"] div, .module-content [role="body"] div {
+.assignment-content [role="body"] div,
+.module-content [role="body"] div {
     @apply grid-cols-[fit-content(48px)_1fr];
+}
+
+.assignment-content .description {
+    @apply p-0 text-sm overflow-auto block opacity-75 text-justify rounded-none resize-none border-none ring-0 outline-none select-none cursor-context-menu;
 }
 
 .assignment-content div[role="header"] {
@@ -256,11 +266,12 @@ div[role="tooltip"] {
     @apply grid grid-cols-[1fr_1fr];
 }
 
-.assignment-content [role="footer"] .chart-container:not(:empty){
+.assignment-content [role="footer"] .chart-container:not(:empty) {
     @apply w-fit h-16 -mt-3 -ml-3;
 }
 
-.assignment-block[name="new-assignment"],  .module-block[name="new-module"]{
+.assignment-block[name="new-assignment"],
+.module-block[name="new-module"] {
     @apply border-dashed;
 }
 
@@ -291,7 +302,6 @@ fieldset {
 fieldset legend {
     @apply pr-3 uppercase font-semibold text-xs tracking-widest text-gray-400;
 }
-
 
 @media (min-height: 700px) {
     div[role="side-panel"] .ui-component:last-child {
@@ -351,11 +361,11 @@ fieldset legend {
     #S4P6 .view-box {
         @apply block max-h-[180px] overflow-auto;
     }
-    
+
     #S4P6 .view-box .view-container {
         @apply grid grid-cols-[15%_80%] mb-3;
     }
-    
+
     #S4P6 .view-box .view-container p {
         @apply text-xs text-justify;
     }
@@ -373,7 +383,7 @@ div[role="side-panel"] .count-down span:not(:first-child) {
     @apply fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 md:h-full;
 }
 
-.popup-wrapper  {
+.popup-wrapper {
     @apply relative w-full h-full max-w-md md:h-auto;
 }
 
@@ -395,4 +405,32 @@ div[role="side-panel"] .count-down span:not(:first-child) {
 
 .assignmentmodal-container {
     @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
+}
+
+.input-block {
+    @apply mb-3;
+}
+
+.input-heading {
+    @apply text-xs font-bold my-2;
+}
+
+.input-block div {
+    @apply relative max-w-sm text-xs;
+}
+
+select {
+    @apply p-3 outline-none appearance-none bg-transparent;
+}
+
+.assignmentmodal-container textarea {
+    @apply w-full text-xs mb-3 resize-none;
+}
+
+input.datepicker-element {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+input.datepicker-element.datepicker-input {
+    @apply rounded-full border-dark border dark:border-gray-500;
 }

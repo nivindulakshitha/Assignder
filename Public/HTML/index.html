@@ -34,6 +34,8 @@
     <script src="../JavaScript/Vue/vue.global.js" defer></script>
     <script src="../JavaScript/Vue/index.js" defer></script>
     <script src="../JavaScript/Assignder/index.js" defer></script>
+    <script src="../JavaScript/Flowbite/datepicker.min.js" defer></script>
+
 
 </head>
 
@@ -43,7 +45,7 @@
     <main role="body-container">
         <section class="hidden flexing" featuring="loading-component" id="1">
             <img src="../Images/Assignder.svg" alt="Assignder" />
-           <!--  <p class="unthemed" id="loading-text">Hang on tight, We are working on your request!</p> -->
+            <!--  <p class="unthemed" id="loading-text">Hang on tight, We are working on your request!</p> -->
         </section>
 
         <section class="hidden flexing" featuring="application-signin" id="2">
@@ -140,7 +142,8 @@
                         </div>
                         <div id="account-indicator" target="normal"></div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P1')" class="flexing" active="false" data-tooltip-target="4N3" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P1')" class="flexing" active="false"
+                        data-tooltip-target="4N3" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -159,7 +162,8 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P2')" class="flexing" active="false" data-tooltip-target="4N4" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P2')" class="flexing" active="false"
+                        data-tooltip-target="4N4" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" fill-rule="evenodd"
@@ -177,7 +181,8 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P3')" class="flexing" active="false" data-tooltip-target="4N5" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P3')" class="flexing" active="false"
+                        data-tooltip-target="4N5" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" fill-rule="evenodd"
@@ -194,7 +199,8 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P4')" class="flexing" active="false" data-tooltip-target="4N6" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P4')" class="flexing" active="false"
+                        data-tooltip-target="4N6" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" fill-rule="evenodd"
@@ -211,16 +217,37 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P5')" class="flexing" active="false" data-tooltip-target="4N7" data-tooltip-placement="right">
-                        <svg class="w-5" stroke-width="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M102.8,1.5c-6.47,4.08-11.06,11.72-13,19L57.3,141.24a25.91,25.91,0,0,1-22,19.07,1.5,1.5,0,0,0-.57.19H10.79c7.17-3.88,13.4-11.09,15.51-18.94L58.77,20.78A26.08,26.08,0,0,1,83.92,1.5H102.8M83.92,0a27.54,27.54,0,0,0-26.6,20.39L24.85,141.17C22,151.79,10.63,162,0,162H35.44v-.2a27.53,27.53,0,0,0,23.31-20.17L91.22,20.86C94.08,10.33,102.2,0,112.83,0H83.92Zm28.91,0h0Z"/><path d="M132.35,118.63a20.76,20.76,0,1,1-20.76,20.76,20.78,20.78,0,0,1,20.76-20.76m0-1.5a22.26,22.26,0,1,0,22.26,22.26,22.26,22.26,0,0,0-22.26-22.26Z"/></g></g></svg>
-                        <svg class="w-5 fill-dark dark:fill-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M24.85,141.17,57.32,20.39A27.54,27.54,0,0,1,83.92,0h28.91C102.2,0,94.08,10.33,91.22,20.86L58.75,141.63A27.53,27.53,0,0,1,35.44,161.8v.2H0C10.63,162,22,151.79,24.85,141.17Z"/><path d="M132.35,117.13a22.26,22.26,0,1,1-22.26,22.26,22.26,22.26,0,0,1,22.26-22.26Z"/></g></g></svg>
+                    <li @click="handlePageOpening($event, 'S4P5')" class="flexing" active="false"
+                        data-tooltip-target="4N7" data-tooltip-placement="right">
+                        <svg class="w-5" stroke-width="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+                            <g id="Layer_2" data-name="Layer 2">
+                                <g id="Layer_1-2" data-name="Layer 1">
+                                    <path
+                                        d="M102.8,1.5c-6.47,4.08-11.06,11.72-13,19L57.3,141.24a25.91,25.91,0,0,1-22,19.07,1.5,1.5,0,0,0-.57.19H10.79c7.17-3.88,13.4-11.09,15.51-18.94L58.77,20.78A26.08,26.08,0,0,1,83.92,1.5H102.8M83.92,0a27.54,27.54,0,0,0-26.6,20.39L24.85,141.17C22,151.79,10.63,162,0,162H35.44v-.2a27.53,27.53,0,0,0,23.31-20.17L91.22,20.86C94.08,10.33,102.2,0,112.83,0H83.92Zm28.91,0h0Z" />
+                                    <path
+                                        d="M132.35,118.63a20.76,20.76,0,1,1-20.76,20.76,20.78,20.78,0,0,1,20.76-20.76m0-1.5a22.26,22.26,0,1,0,22.26,22.26,22.26,22.26,0,0,0-22.26-22.26Z" />
+                                </g>
+                            </g>
+                        </svg>
+                        <svg class="w-5 fill-dark dark:fill-light" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 180 180">
+                            <g id="Layer_2" data-name="Layer 2">
+                                <g id="Layer_1-2" data-name="Layer 1">
+                                    <path
+                                        d="M24.85,141.17,57.32,20.39A27.54,27.54,0,0,1,83.92,0h28.91C102.2,0,94.08,10.33,91.22,20.86L58.75,141.63A27.53,27.53,0,0,1,35.44,161.8v.2H0C10.63,162,22,151.79,24.85,141.17Z" />
+                                    <path
+                                        d="M132.35,117.13a22.26,22.26,0,1,1-22.26,22.26,22.26,22.26,0,0,1,22.26-22.26Z" />
+                                </g>
+                            </g>
+                        </svg>
                         <div id="4N7" role="tooltip" class="invisible tooltip">
                             Alertify
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
                     <div class="flex-grow"></div>
-                    <li @click="handleAppThemeChange()" data-modal-target="ok" data-modal-toggle="ok" class="flexing" active="asTheme" data-tooltip-target="4N8" data-tooltip-placement="right">
+                    <li @click="handleAppThemeChange()" data-modal-target="ok" data-modal-toggle="ok" class="flexing"
+                        active="asTheme" data-tooltip-target="4N8" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -237,7 +264,8 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P6')" class="flexing" active="false" data-tooltip-target="4N9" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P6')" class="flexing" active="false"
+                        data-tooltip-target="4N9" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -255,7 +283,8 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </li>
-                    <li @click="handlePageOpening($event, 'S4P7')" class="flexing" active="false" data-tooltip-target="4N10" data-tooltip-placement="right">
+                    <li @click="handlePageOpening($event, 'S4P7')" class="flexing" active="false"
+                        data-tooltip-target="4N10" data-tooltip-placement="right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -318,7 +347,7 @@
                 <div class="flexing" role="body-holder">
                     <div class="page-container">
                         <div class="hidden page unavailability" name="home" id="S4P1">
-                            <div class="block relative assignment-block" in="danger">
+                            <div class="block relative assignment-block" in="">
                                 <div class="backdrop z-10"></div>
                                 <p class="unthemed" name="order">01</p>
                                 <div class="assignment-content">
@@ -341,19 +370,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p
-                                            class="unthemed description text-sm overflow-hidden block opacity-75 text-justify">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore totam facere
-                                            vero laudantium tempora, soluta, iste unde nihil deserunt aliquam vitae!
-                                            Ratione debitis quas soluta eius harum exercitationem itaque provident.
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sed
-                                            voluptates, corporis a tempora neque, dolore eius mollitia similique nisi
-                                            nam porro optio expedita, nesciunt molestiae modi! Totam, aliquid sit. Lorem
-                                            ipsum dolor sit amet consectetur, adipisicing elit. Quo provident
-                                            consequatur tenetur assumenda, doloremque officiis ut perspiciatis
-                                            repellendus at expedita omnis temporibus alias voluptates blanditiis
-                                            laboriosam libero nam beatae pariatur.
-                                        </p>
+                                        <textarea
+                                            class="unthemed description" readonly="readonly">The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
                                     </div>
 
                                     <div role="footer">
@@ -380,7 +398,9 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <input data-modal-target="cancel-delete" data-modal-toggle="cancel-delete" class="unthemed" type="button" value="Delete" role="danger">
+                                                <input data-modal-target="cancel-delete"
+                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
+                                                    value="Delete" role="danger">
                                                 <input class="unthemed" type="button" value="Done" role="primary">
                                             </div>
                                         </div>
@@ -391,7 +411,8 @@
                             <div class="flexing relative assignment-block" name="new-assignment">
                                 <div class="backdrop z-10"></div>
                                 <div class="flex flexing buttons-holder">
-                                    <input data-modal-target="assignment-modal" data-modal-toggle="assignment-modal" class="relative z-20 unthemed" type="button" value="Create" role="secondary">
+                                    <input data-modal-target="assignment-modal" data-modal-toggle="assignment-modal"
+                                        class="relative z-20 unthemed" type="button" value="Create" role="secondary">
                                 </div>
                             </div>
                         </div>
@@ -411,7 +432,8 @@
                                                 <img src="../Images/person.jpg" alt="" class="rounded-full" />
                                             </div>
                                             <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and Analyzing </span>
+                                                <span class="unthemed w-full text-sm">Object Oriented and Analyzing
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="grid flexing module-data">
@@ -476,63 +498,79 @@
                                 <legend class="unthemed">Connectivity</legend>
                                 <table name="alertify-connection" data-running="true">
                                     <tbody class="grid grid-cols-2">
-                                    <tr>
-                                        <th class="unthemed">Running</th>
-                                        <td class="unthemed flexing" style="display: inline-flex; justify-content: flex-start;">
-                                            <div class="inline-block w-3 h-3 rounded-full bg-danger"></div>
-                                            <span class="inline-block unthemed">Deactive</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Version</th>
-                                        <td class="unthemed unavailability">40.15.1230.21319</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Hereon</th>
-                                        <td class="unthemed">
-                                            <label class="unthemed relative inline-flex items-center cursor-pointer outline-none">
-                                                <input type="checkbox" value="" class="unthemed sr-only peer" checked>
-                                                <div class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                                <span class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Installed</th>
-                                        <td class="unthemed unavailability"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Logs</th>
-                                        <td class="unthemed">
-                                            <label class="unthemed relative inline-flex items-center cursor-pointer outline-none">
-                                                <input type="checkbox" value="" class="unthemed sr-only peer" checked>
-                                                <div class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                                <span class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Size</th>
-                                        <td class="unthemed unavailability">135 MB</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Privacy</th>
-                                        <td class="unthemed">
-                                            <label class="unthemed relative inline-flex items-center cursor-pointer outline-none">
-                                                <input type="checkbox" value="" class="unthemed sr-only peer">
-                                                <div class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                                <span class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Disabled</span>
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="unthemed">Updates</th>
-                                        <td class="unthemed flexing" style="display: inline-flex; justify-content: flex-start;">
-                                            <div class="inline-block w-3 h-3 rounded-full bg-success"></div>
-                                            <span class="inline-block unthemed">Available</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                        <tr>
+                                            <th class="unthemed">Running</th>
+                                            <td class="unthemed flexing"
+                                                style="display: inline-flex; justify-content: flex-start;">
+                                                <div class="inline-block w-3 h-3 rounded-full bg-danger"></div>
+                                                <span class="inline-block unthemed">Deactive</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Version</th>
+                                            <td class="unthemed unavailability">40.15.1230.21319</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Hereon</th>
+                                            <td class="unthemed">
+                                                <label
+                                                    class="unthemed relative inline-flex items-center cursor-pointer outline-none">
+                                                    <input type="checkbox" value="" class="unthemed sr-only peer"
+                                                        checked>
+                                                    <div
+                                                        class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                                    </div>
+                                                    <span
+                                                        class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Installed</th>
+                                            <td class="unthemed unavailability"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Logs</th>
+                                            <td class="unthemed">
+                                                <label
+                                                    class="unthemed relative inline-flex items-center cursor-pointer outline-none">
+                                                    <input type="checkbox" value="" class="unthemed sr-only peer"
+                                                        checked>
+                                                    <div
+                                                        class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                                    </div>
+                                                    <span
+                                                        class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Size</th>
+                                            <td class="unthemed unavailability">135 MB</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Privacy</th>
+                                            <td class="unthemed">
+                                                <label
+                                                    class="unthemed relative inline-flex items-center cursor-pointer outline-none">
+                                                    <input type="checkbox" value="" class="unthemed sr-only peer">
+                                                    <div
+                                                        class="unthemed w-9 h-5 bg-gray-200 ring-0 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                                    </div>
+                                                    <span
+                                                        class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Disabled</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Updates</th>
+                                            <td class="unthemed flexing"
+                                                style="display: inline-flex; justify-content: flex-start;">
+                                                <div class="inline-block w-3 h-3 rounded-full bg-success"></div>
+                                                <span class="inline-block unthemed">Available</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                                 <div class="buttons-holder flexing" style="justify-content: end;">
                                     <input type="button" value="Retrieve" class="unthemed" role="secondary" />
@@ -545,23 +583,42 @@
                             </fieldset>
                         </div>
 
-                        <div class="hidden grid-rows-[fit-content(100%)_auto] page unavailability" name="about" id="S4P6">
+                        <div class="hidden grid-rows-[fit-content(100%)_auto] page unavailability" name="about"
+                            id="S4P6">
                             <fieldset class="unthemed">
                                 <legend class="unthemed">Developers </legend>
                                 <div class="flexing unthemed view-box">
                                     <div class="flexing view-container">
                                         <img src="../Images/university logo.png" alt="">
-                                        <p class="unthemed view-description">The Faculty of Technology at the University of Sri Jayewardenepura is a top-tier institution that provides high-quality education in technology. With a focus on practical, hands-on learning and cutting-edge research, the faculty prepares students for successful careers in a range of technology-related fields. The faculty offers a variety of undergraduate and postgraduate programs in areas such as civil, electrical and electronic engineering, information technology. The Faculty of Technology is committed to excellence in education and research, and is dedicated to preparing the next generation of technology leaders.</p>
+                                        <p class="unthemed view-description">The Faculty of Technology at the University
+                                            of Sri Jayewardenepura is a top-tier institution that provides high-quality
+                                            education in technology. With a focus on practical, hands-on learning and
+                                            cutting-edge research, the faculty prepares students for successful careers
+                                            in a range of technology-related fields. The faculty offers a variety of
+                                            undergraduate and postgraduate programs in areas such as civil, electrical
+                                            and electronic engineering, information technology. The Faculty of
+                                            Technology is committed to excellence in education and research, and is
+                                            dedicated to preparing the next generation of technology leaders.</p>
                                     </div>
                                     <div class="flexing view-container">
                                         <img src="../Images/Alpha_CodeNox.svg" alt="">
-                                        <p class="unthemed view-description">Alpha CodeNox is a software development project team created by a group of students from the Department of Information Technology at the Faculty of Technology, University of Sri Jayewardenepura. Developed as part of our Fundamentals of Programming course, the project showcases the group's skills in software development, programming, and problem-solving. With a focus on user experience and functionality, Alpha CodeNox is a testament to the group's dedication and hard work, and represents their commitment to excellence in technology education.</p>
+                                        <p class="unthemed view-description">Alpha CodeNox is a software development
+                                            project team created by a group of students from the Department of
+                                            Information Technology at the Faculty of Technology, University of Sri
+                                            Jayewardenepura. Developed as part of our Fundamentals of Programming
+                                            course, the project showcases the group's skills in software development,
+                                            programming, and problem-solving. With a focus on user experience and
+                                            functionality, Alpha CodeNox is a testament to the group's dedication and
+                                            hard work, and represents their commitment to excellence in technology
+                                            education.</p>
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset class="unthemed">
                                 <legend class="unthemed">License</legend>
-                                <textarea class="text-xs focus:outline-none w-full h-full border-0 text-center resize-none" disabled>
+                                <textarea
+                                    class="text-xs focus:outline-none w-full h-full border-0 text-center resize-none"
+                                    disabled>
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -812,17 +869,25 @@ The GNU General Public License does not permit incorporating your program into p
                             </fieldset>
                         </div>
 
-                        <div class="grid flexing page" name="popups-holder" id="S4P7">
+                        <div class="hidden page unavailability" name="settings" id="S4P7"></div>
+
+                        <div class="grid flexing page" name="popups-holder" id="S4P8">
                             <div id="cancel-delete" tabindex="-1" class="unthemed popup-block hidden h-modal">
                                 <div class="unthemed popup-wrapper">
                                     <div class="unthemed popup-backdrop">
                                         <div class="p-6 text-center unthemed ">
-                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
                                             <h3 class="unthemed"></h3>
                                             <div class="flex flexing">
                                                 <div class="flex flexing buttons-holder">
-                                                    <input data-modal-hide="cancel-delete" class="unthemed" type="button" value="Cancel" role="secondary">
-                                                    <input data-modal-hide="cancel-delete" class="unthemed" type="button" value="Delete" role="danger">
+                                                    <input data-modal-hide="cancel-delete" class="unthemed"
+                                                        type="button" value="Cancel" role="secondary">
+                                                    <input data-modal-hide="cancel-delete" class="unthemed"
+                                                        type="button" value="Delete" role="danger">
                                                 </div>
                                             </div>
                                         </div>
@@ -830,15 +895,20 @@ The GNU General Public License does not permit incorporating your program into p
                                 </div>
                             </div>
 
-                            <div id="ok"  tabindex="-1" class="unthemed popup-block hidden h-modal">
+                            <div id="ok" tabindex="-1" class="unthemed popup-block hidden h-modal">
                                 <div class="unthemed popup-wrapper">
                                     <div class="unthemed popup-backdrop">
                                         <div class="p-6 text-center unthemed ">
-                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <svg aria-hidden="true" class="unthemed" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
                                             <h3 class="unthemed"></h3>
                                             <div class="flex flexing">
                                                 <div class="flex flexing buttons-holder">
-                                                    <input data-modal-hide="ok" class="unthemed" type="button" value="Ok" role="primary">
+                                                    <input data-modal-hide="ok" class="unthemed" type="button"
+                                                        value="Ok" role="primary">
                                                 </div>
                                             </div>
                                         </div>
@@ -846,26 +916,149 @@ The GNU General Public License does not permit incorporating your program into p
                                 </div>
                             </div>
 
-                            <div id="assignment-modal" tabindex="-1" aria-hidden="true" class="unthemed popup-block hidden h-modal">
+                            <div id="assignment-modal" tabindex="-1" aria-hidden="true"
+                                class="unthemed popup-block hidden h-modal">
+
                                 <div class="assignmentmodal-wrapper">
                                     <div class="assignmentmodal-container">
                                         <div class="px-6 py-6 lg:px-8">
                                             <div class="unthemed" role="form">
-                                                <p class="unthemed text-xs font-bold my-2">Reference Key</p>
-                                                <input class="unthemed text-xs mb-3" type="text" value="E31DE79D-E13C-48FF-A283-DC76C27A1CF5" style="width: 100%; padding: 12px" disabled>
+                                                <div class="grid grid-cols-4 flexing">
+                                                    <div class="col-span-3 input-block">
+                                                        <p class="unthemed input-heading">Assignment</p>
+                                                        <input class="unthemed text-xs" type="text"
+                                                            placeholder="Assignment title"
+                                                            style="width: 100%; padding: 12px">
+                                                    </div>
 
-                                                <p class="unthemed text-xs font-bold my-2">Title</p>
-                                                <input class="unthemed text-xs mb-3" type="text" placeholder="Assignment title" style="width: 100%; padding: 12px">
+                                                    <div class="input-block">
+                                                        <p class="unthemed input-heading">Abbreviation</p>
+                                                        <p class="unthemed text-xs">@USJP</p>
+                                                    </div>
+                                                </div>
 
-                                                <p class="unthemed text-xs font-bold my-2">Description</p>
-                                                <textarea class="unthemed w-full h-fit text-xs mb-3"></textarea>
+                                                <div class="grid grid-cols-4 flexing">
+                                                    <div class="col-span-2 input-block">
+                                                        <p class="unthemed input-heading">Deadline</p>
+                                                        <div class="unthemed">
+                                                            <input datepicker datepicker-orientation="bottom left"
+                                                                type="text" class="unthemed datepicker-element"
+                                                                placeholder="MM/DD/YYYY">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-span-2 input-block">
+                                                        <div class="container mx-auto mt-7">
+                                                            <div class="inline-flex text-sm">
+                                                                <select name="" id="" class="unthemed">
+                                                                    <option value="00">00</option>
+                                                                    <option value="01">01</option>
+                                                                    <option value="02">02</option>
+                                                                    <option value="03">03</option>
+                                                                    <option value="04">04</option>
+                                                                    <option value="05">05</option>
+                                                                    <option value="06">06</option>
+                                                                    <option value="07">07</option>
+                                                                    <option value="08">08</option>
+                                                                    <option value="09">09</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="11">11</option>
+                                                                    <option value="12">12</option>
+                                                                    <option value="13">13</option>
+                                                                    <option value="14">14</option>
+                                                                    <option value="15">15</option>
+                                                                    <option value="16">16</option>
+                                                                    <option value="17">17</option>
+                                                                    <option value="18">18</option>
+                                                                    <option value="19">19</option>
+                                                                    <option value="20">20</option>
+                                                                    <option value="21">21</option>
+                                                                    <option value="22">22</option>
+                                                                    <option value="23">23</option>
+                                                                    <option value="24">24</option>
+                                                                </select>
+                                                                <span class="unthemed p-3">:</span>
+                                                                <select name="" id="" class="unthemed">
+                                                                    <option value="00">00</option>
+                                                                    <option value="01">01</option>
+                                                                    <option value="02">02</option>
+                                                                    <option value="03">03</option>
+                                                                    <option value="04">04</option>
+                                                                    <option value="05">05</option>
+                                                                    <option value="06">06</option>
+                                                                    <option value="07">07</option>
+                                                                    <option value="08">08</option>
+                                                                    <option value="09">09</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="11">11</option>
+                                                                    <option value="12">12</option>
+                                                                    <option value="13">13</option>
+                                                                    <option value="14">14</option>
+                                                                    <option value="15">15</option>
+                                                                    <option value="16">16</option>
+                                                                    <option value="17">17</option>
+                                                                    <option value="18">18</option>
+                                                                    <option value="19">19</option>
+                                                                    <option value="20">20</option>
+                                                                    <option value="21">21</option>
+                                                                    <option value="22">22</option>
+                                                                    <option value="23">23</option>
+                                                                    <option value="24">24</option>
+                                                                    <option value="25">25</option>
+                                                                    <option value="26">26</option>
+                                                                    <option value="27">27</option>
+                                                                    <option value="28">28</option>
+                                                                    <option value="29">29</option>
+                                                                    <option value="30">30</option>
+                                                                    <option value="31">31</option>
+                                                                    <option value="32">32</option>
+                                                                    <option value="33">33</option>
+                                                                    <option value="34">34</option>
+                                                                    <option value="35">35</option>
+                                                                    <option value="36">36</option>
+                                                                    <option value="37">37</option>
+                                                                    <option value="38">38</option>
+                                                                    <option value="39">39</option>
+                                                                    <option value="40">40</option>
+                                                                    <option value="41">41</option>
+                                                                    <option value="42">42</option>
+                                                                    <option value="43">43</option>
+                                                                    <option value="44">44</option>
+                                                                    <option value="45">45</option>
+                                                                    <option value="46">46</option>
+                                                                    <option value="47">47</option>
+                                                                    <option value="48">48</option>
+                                                                    <option value="49">49</option>
+                                                                    <option value="50">50</option>
+                                                                    <option value="51">51</option>
+                                                                    <option value="52">52</option>
+                                                                    <option value="53">53</option>
+                                                                    <option value="54">54</option>
+                                                                    <option value="55">55</option>
+                                                                    <option value="56">56</option>
+                                                                    <option value="57">57</option>
+                                                                    <option value="58">58</option>
+                                                                    <option value="59">59</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p class="unthemed input-heading">Module</p>
+                                                <select name="" id="" class="unthemed w-full mb-3">
+                                                    <option value="0"></option>
+                                                </select>
+
+                                                <p class="unthemed input-heading">Summary</p>
+                                                <textarea class="unthemed" rows="6"></textarea>
 
                                                 <div class="flex flexing">
                                                     <div class="flex flexing buttons-holder">
-                                                        <button class="unthemed flexing" type="button" role="secondary">
+                                                        <button @click="handleToggleButtons($event)" class="unthemed flexing toggled" type="button" role="secondary">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                                class="w-4 h-4 unthemed">
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-4 h-4 unthemed">
                                                                 <path class="unthemed stroke-dark dark:stroke-light"
                                                                     fill-rule="evenodd"
                                                                     d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
@@ -873,15 +1066,17 @@ The GNU General Public License does not permit incorporating your program into p
                                                             </svg>
                                                         </button>
 
-                                                        <input class="unthemed" type="button" value="Discard" role="secondary">
-                                                        <input class="unthemed" type="button" value="Create" role="primary">
+                                                        <input data-modal-toggle="assignment-modal" class="unthemed"
+                                                            type="button" value="Discard" role="secondary">
+                                                        <input class="unthemed" type="button" value="Confirm"
+                                                            role="primary">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
 
