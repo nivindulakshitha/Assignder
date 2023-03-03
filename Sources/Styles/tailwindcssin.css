@@ -44,7 +44,7 @@ div[role="form-wrapper"] .footer-note {
 }
 
 .rounded-image {
-    @apply overflow-hidden rounded-full bg-slate-700;
+    @apply overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700;
 }
 
 .rounded-image .image-wrapper img {
@@ -74,11 +74,11 @@ p#loading-text {
 }
 
 [type="button"][role="secondary"] {
-    @apply border-secondary hover:text-dark hover:bg-gray-300 hover:dark:text-white hover:dark:bg-gray-700;
+    @apply border-secondary hover:text-dark hover:bg-gray-100 hover:dark:text-white hover:dark:bg-gray-700;
 }
 
 .toggled[type="button"][role="secondary"] {
-    @apply bg-gray-300 dark:bg-gray-600;
+    @apply bg-gray-100 dark:bg-gray-600;
 }
 
 .toggled[type="button"][role="secondary"] svg {
@@ -95,8 +95,8 @@ p#loading-text {
 
 input[type="text"],
 input[type="password"],
-textarea {
-    @apply border rounded-full py-1 px-8 border-secondary bg-transparent focus:border-primary;
+textarea.input {
+    @apply border rounded-full py-1 px-2 border-secondary bg-transparent focus:border-primary;
 }
 
 input[check="error"] {
@@ -124,6 +124,10 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"].display-only::-webkit-slider-thumb {
     @apply hidden;
+}
+
+div.checkbox {
+    @apply bg-gray-200 ring-0 peer-focus:outline-none rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600;
 }
 
 a {
@@ -395,24 +399,24 @@ div[role="side-panel"] .count-down span:not(:first-child) {
     @apply mb-5 text-sm font-normal text-gray-500 dark:text-gray-400;
 }
 
-.popup-block:not(#assignment-modal) svg {
+.popup-block:not(#assignment-modal, #module-modal) svg {
     @apply mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200;
 }
 
-.assignmentmodal-wrapper {
+.assignmentmodal-wrapper, .modulemodal-wrapper {
     @apply relative w-full h-full max-w-md md:h-auto;
 }
 
-.assignmentmodal-container {
+.assignmentmodal-container, .modulemodal-container {
     @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
 }
 
 .input-block {
-    @apply mb-3;
+    @apply flex flexing flex-col mb-3;
 }
 
 .input-heading {
-    @apply text-xs font-bold my-2;
+    @apply text-xs font-bold my-2 text-left w-full;
 }
 
 .input-block div {

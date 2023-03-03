@@ -468,3 +468,8 @@ div.datepicker.datepicker-dropdown div.datepicker-header div.datepicker-controls
     border-radius: unset;
     padding: 12px;
 }
+
+input[type="color" i]::-webkit-color-swatch-wrapper {
+    padding: 0px;
+    cursor: pointer;
+}

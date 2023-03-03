@@ -32,7 +32,7 @@ function sectionOpener(event, sectionId) {
 
 // open Home section
 window.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#\\34  > nav > ul > li:nth-child(2)").click();
+    document.querySelector("#\\34  > nav > ul > li:nth-child(5)").click();
 });
 
 // loading component opener
@@ -66,7 +66,7 @@ function switchAppTheme() {
 
 // set time out
 function makeSettimeout(timeout, redirect, ...params) {
-    setTimeout(() => {redirect(...params)}, timeout);
+    setTimeout(() => { redirect(...params) }, timeout);
 }
 
 // paging in same section
@@ -107,16 +107,27 @@ function generateImageFromName(name) {
     canvas.width = 300;
     canvas.height = 300;
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgba(255, 255, 255, .1)";
+    const colorPicker = document.getElementById("modulecolor-picker");
+    ctx.fillStyle = hexToRgba(colorPicker.value, 0.1);
     ctx.fillRect(0, 0, 300, 300);
     ctx.font = "bold 150px consolas";
-    ctx.fillStyle = "rgba(255, 255, 255, 1)";
+    ctx.fillStyle = hexToRgba(colorPicker.value, 1);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(firstLetters.join("").toUpperCase(), canvas.width / 2, canvas.height / 2);
     const dataURL = canvas.toDataURL();
 
     return dataURL;
+}
+
+// Hex color to RGBA color
+function hexToRgba(hexValue, alpha) {
+    const hexRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    const result = hexRegex.exec(hexValue);
+    const red = parseInt(result[1], 16);
+    const green = parseInt(result[2], 16);
+    const blue = parseInt(result[3], 16);
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 }
 
 
@@ -129,9 +140,4 @@ function toggleButtonsHandler(event) {
     } else {
         target.classList.add("toggled");
     }
-}
-
-// Create a new assignment
-function createNewAssignment() {
-    console.log('called')
 }

@@ -3,7 +3,15 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            
+            tabs: {
+                modules: {
+                    new: {
+                        typing: "",
+                        tempImg: "",
+                        color: "",
+                    }
+                }
+            }
         };
     },
 
@@ -22,6 +30,10 @@ createApp({
 
         handleNewAssignmentCreate() {
             createNewAssignment();
+        },
+
+        handleModuleNameInput() {
+            this.tabs.modules.new.tempImg = generateImageFromName(this.tabs.modules.new.typing);
         }
     }
 }).mount("#assignderApplication");
