@@ -1,3 +1,3 @@
 # Assignder
 
-![ASSIGNDER](https://github.com/coding-desk20/coding-desk20/blob/main/images/banner.png?raw=true)
+![ASSIGNDER](https://raw.githubusercontent.com/codingdesk-dev/assignder/codingdesk-dev/Public/Images/Assignder.svg)
