@@ -13,7 +13,7 @@
 
     <script src="../JavaScript/Assignder/declarations.js" defer></script>
     <script src="../JavaScript/Flowbite/flowbite.min.js" defer></script>
-    <script src="../JavaScript/Vue/vue.global.js" defer></script>
+    <script src="../JavaScript/Vue/vue.js" defer></script>
     <script src="../JavaScript/Vue/index.js" defer></script>
     <script src="../JavaScript/Assignder/index.js" defer></script>
     <script src="../JavaScript/Flowbite/datepicker.min.js" defer></script>
@@ -22,7 +22,8 @@
 
 </head>
 
-<body id="assignderApplication" class="border border-blue-900">
+<body class="border border-blue-900">
+    <div class="vue-app" id="assignderApplication" style="width: 100%; height: 100%;">
     <header role="app-region"></header>
 
     <main role="body-container">
@@ -338,100 +339,31 @@
                                 </div>
                             </div>
 
-                            <div class="block relative assignment-block" in="">
+                            <div  v-if="Object.keys(profiledata).length > 0" v-for="(value, key, index) in profiledata.assignments" class="block relative assignment-block" :index="index">
                                 <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
+                                <p class="unthemed" name="order">{{ formatNumber(index + 1) }}</p>
                                 <div class="assignment-content">
                                     <div role="body">
                                         <div class="grid flexing">
                                             <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
+                                                <img :src="profiledata.modules[value.refmod].image" alt="" class="rounded-full" />
                                             </div>
                                             <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
+                                                <span class="unthemed block-text assignment-title">{{ value.title }}</span>
                                                 <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
+                                                    <span class="unthemed opacity-70 inline-block">{{ handleDateFormat(value.due) }}</span>
+                                                    <p class="unthemed inline-block text-gray-400 count-down" :id="`count-down-${index}`">
+                                                        <span class="unthemed" name="days">{{ handleAssignmentTimeUpdate(index, value.due, 'D') }}</span>
                                                         D
-                                                        <span class="unthemed" name="hours">05</span>
+                                                        <span class="unthemed" name="hours">{{ handleAssignmentTimeUpdate(index, value.due, 'H') }}</span>
                                                         H
-                                                        <span class="unthemed" name="minutes">39</span>
+                                                        <span class="unthemed" name="minutes">{{ handleAssignmentTimeUpdate(index, value.due, 'M') }}</span>
                                                         M
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input @click="handleAssignmentDeleteRequest()" data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="attention">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
+                                        <textarea class="unthemed description input" readonly="readonly">{{ value.summary }}</textarea>
                                     </div>
 
                                     <div role="footer">
@@ -467,397 +399,6 @@ The assignment requires a thorough understanding of the course material and care
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="block relative assignment-block" in="critical">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="danger">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="attention">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="critical">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="block relative assignment-block" in="danger">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="order">01</p>
-                                <div class="assignment-content">
-                                    <div role="body">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12 border-2 border-primary">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed block-text assignment-title">Requirement
-                                                    Engineering
-                                                    questionnaire</span>
-                                                <div class="unthemed block-text assignment-data">
-                                                    <span class="unthemed opacity-70 inline-block">Mar 10, 2023
-                                                        @23:59</span>
-                                                    <p class="unthemed inline-block text-gray-400 count-down">
-                                                        <span class="unthemed" name="days">01</span>
-                                                        D
-                                                        <span class="unthemed" name="hours">05</span>
-                                                        H
-                                                        <span class="unthemed" name="minutes">39</span>
-                                                        M
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <textarea class="unthemed description input" readonly="readonly">
-The assignment requires a thorough understanding of the course material and careful attention to the instructions and grading criteria. The formatting requirements and grading weights should be carefully reviewed before beginning the assignment. The due date for the assignment is next Monday, March 8th.</textarea>
-                                    </div>
-
-                                    <div role="footer">
-                                        <div class="block unavailability disabled chart-container" id="S4P1C1"></div>
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input data-modal-target="cancel-delete"
-                                                    data-modal-toggle="cancel-delete" class="unthemed" type="button"
-                                                    value="Delete" role="danger" />
-                                                <input class="unthemed" type="button" value="Done" role="primary" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="hidden page unavailability" name="insights" id="S4P2">
@@ -892,46 +433,43 @@ The assignment requires a thorough understanding of the course material and care
                                 <div class="backdrop z-10"></div>
 
                                 <div class="flex flexing buttons-holder w-full h-full">
-                                    <input data-modal-target="module-modal" data-modal-toggle="module-modal"
+                                    <input @click="handleOpenModuleModal()" data-modal-target="module-modal" data-modal-toggle="module-modal"
                                         class="unthemed relative z-20" type="button" value="Create" role="secondary" />
                                 </div>
                             </div>
 
-                            <div class="block relative module-block">
+                            <div v-if="Object.keys(profiledata).length > 0" v-for="(value, key, index) in profiledata.modules" :uuid="profiledata.modules.index" class="block relative module-block">
                                 <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
+                                <p class="unthemed" name="credit"> {{ formatNumber(value.credit) }} </p>
                                 <div class="module-content" style="gap: unset">
                                     <div role="body" style="gap: 6px">
                                         <div class="grid flexing">
                                             <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
+                                                <img :src=value.image alt="" class="rounded-full" />
                                             </div>
                                             <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
+                                                <span class="unthemed w-full text-sm">{{ value.name }}</div>
                                         </div>
                                         <div class="grid flexing module-data">
                                             <div class="flex flexing data-box">
                                                 <p class="unthemed title">
-                                                    1023
+                                                    {{ value.code }}
                                                 </p>
-                                                <span class="unthemed sub-title">ITC</span>
+                                                <span class="unthemed sub-title">{{ value.identity }}</span>
                                             </div>
                                             <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
+                                                <div class="color-code" :style="{backgroundColor: value.color}"></div>
                                                 <span class="unthemed sub-title">Color</span>
                                             </div>
                                             <div class="flex flexing data-box">
                                                 <p class="unthemed title">
-                                                    25
+                                                    {{ value.notify }}
                                                 </p>
                                                 <span class="unthemed sub-title">Notify</span>
                                             </div>
                                             <div class="flex flexing data-box">
                                                 <p class="unthemed title">
-                                                    30
+                                                    {{ value.wait }}
                                                 </p>
                                                 <span class="unthemed sub-title">Wait</span>
                                             </div>
@@ -940,7 +478,7 @@ The assignment requires a thorough understanding of the course material and care
                                     <div role="footer">
                                         <div class="flex flexing">
                                             <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
+                                                <button @click="handleToggleButtons($event)" class="unthemed flexing" :class="{'toggled': value.alertify}" type="button" role="secondary">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4 unthemed">
@@ -966,629 +504,6 @@ The assignment requires a thorough understanding of the course material and care
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block relative module-block">
-                                <div class="backdrop z-10"></div>
-                                <p class="unthemed" name="credit">03</p>
-                                <div class="module-content" style="gap: unset">
-                                    <div role="body" style="gap: 6px">
-                                        <div class="grid flexing">
-                                            <div class="rounded-image w-12 h-12">
-                                                <img src="../Images/person.jpg" alt="" class="rounded-full" />
-                                            </div>
-                                            <div class="unthemed" role="header">
-                                                <span class="unthemed w-full text-sm">Object Oriented and
-                                                    Analyzing
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="grid flexing module-data">
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    1023
-                                                </p>
-                                                <span class="unthemed sub-title">ITC</span>
-                                            </div>
-                                            <div class="flex flexing data-box" id="module-color">
-                                                <div class="color-code bg-primary"></div>
-                                                <span class="unthemed sub-title">Color</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    25
-                                                </p>
-                                                <span class="unthemed sub-title">Notify</span>
-                                            </div>
-                                            <div class="flex flexing data-box">
-                                                <p class="unthemed title">
-                                                    30
-                                                </p>
-                                                <span class="unthemed sub-title">Wait</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="footer">
-                                        <div class="flex flexing">
-                                            <div class="flex flexing buttons-holder">
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <button class="unthemed flexing" type="button" role="secondary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-4 h-4 unthemed">
-                                                        <path class="unthemed stroke-dark dark:stroke-light"
-                                                            fill-rule="evenodd"
-                                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </button>
-                                                <input class="unthemed" type="button" value="Delete" role="danger" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="hidden page" name="alertify" id="S4P5">
@@ -1615,7 +530,7 @@ The assignment requires a thorough understanding of the course material and care
                                                 Version
                                             </th>
                                             <td class="unthemed unavailability">
-                                                40.15.1230.21319
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -1655,7 +570,7 @@ The assignment requires a thorough understanding of the course material and care
                                         <tr>
                                             <th class="unthemed">Size</th>
                                             <td class="unthemed unavailability">
-                                                135 MB
+                                                0 MB
                                             </td>
                                         </tr>
                                         <tr>
@@ -1681,8 +596,8 @@ The assignment requires a thorough understanding of the course material and care
                                                         display: inline-flex;
                                                         justify-content: flex-start;
                                                     ">
-                                                <div class="inline-block w-3 h-3 rounded-full bg-success"></div>
-                                                <span class="inline-block unthemed">Available</span>
+                                                <div class="inline-block w-3 h-3 rounded-full bg-amber-400"></div>
+                                                <span class="inline-block unthemed">Unavailable</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -2019,12 +934,12 @@ The GNU General Public License does not permit incorporating your program into p
                         <div class="hidden page unavailability" name="settings" id="S4P7">
                             <fieldset class="unthemed flex flexing" style="justify-content: flex-start;">
                                 <legend class="unthemed">Account</legend>
-                                <div class="rounded-image w-24 h-24 border-4 border-success inline-block">
-                                    <img src="../Images/person.jpg" alt="" class="rounded-full" />
+                                <div class="rounded-image w-28 h-28 inline-block">
+                                    <img alt="" class="rounded-full" />
                                 </div>
                                 <div>
-                                    <span class="unthemed text block text-xl tracking-wider font-semibold">nivindu_lakshitha</span>
-                                    <p class="unthemed text block opacity-50 text-base">University of Sri Jayewardenepura</p>
+                                    <span class="unthemed text block text-xl tracking-wider font-semibold"></span>
+                                    <p class="unthemed text block opacity-50 text-base"></p>
                                     <div class="my-2 buttons-holder">
                                         <input @click="handleLogOut()" class="unthemed" type="button" value="Log out" role="danger" />
                                     </div>
@@ -2040,8 +955,8 @@ The GNU General Public License does not permit incorporating your program into p
                                                 Select
                                             </th>
                                             <td class="unthemed unavailability" style="width: calc(100% - 20%); padding: 5.5px 12px;">
-                                                <select class="unthemed" name="" id="" style="padding:  2.5px 50px 2.5px 10px;">
-                                                    <option value="1">University of Sri Jayewardenepura</option>
+                                                <select @input="handleChangeProfile()" class="unthemed" name="" id="" style="padding:  2.5px 50px 2.5px 10px;" v-if="Object.keys(appdata).length > 0" :value="appdata.app.login.profile">
+                                                    <option v-if="Object.keys(appdata).length > 0" v-for="(value, key, index) in appdata.profiles" :value="key">{{ key }}</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -2053,7 +968,7 @@ The GNU General Public License does not permit incorporating your program into p
                                                         display: inline-flex;
                                                         justify-content: flex-start;
                                                     ">
-                                             <span class="unthemed text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
+                                             <span class="unthemed text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -2221,8 +1136,8 @@ The GNU General Public License does not permit incorporating your program into p
                                                         <p class="unthemed input-heading">
                                                             Abbreviation
                                                         </p>
-                                                        <p class="unthemed text-xs">
-                                                            @USJP
+                                                        <p class="unthemed text-xs" v-if="Object.keys(profiledata).length > 0">
+                                                            @{{ profiledata.self.abbr }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -2507,6 +1422,9 @@ The GNU General Public License does not permit incorporating your program into p
                                                     Module
                                                 </p>
                                                 <select name="" id="" class="unthemed w-full mb-3">
+                                                    <option v-if="Object.keys(profiledata).length > 0" v-for="(key, value, index) in profiledata.modules" :value="value">
+                                                        {{ key.name }}
+                                                    </option>
                                                 </select>
 
                                                 <p class="unthemed input-heading">
@@ -2531,7 +1449,7 @@ The GNU General Public License does not permit incorporating your program into p
 
                                                         <input data-modal-toggle="assignment-modal" class="unthemed"
                                                             type="button" value="Discard" role="secondary" />
-                                                        <input @click="handleAssignmentSubmit()" class="unthemed" type="button" value="Confirm"
+                                                        <input data-modal-toggle="assignment-modal"  @click="handleAssignmentSubmit()" class="unthemed" type="button" value="Confirm"
                                                             role="primary" />
                                                     </div>
                                                 </div>
@@ -2627,7 +1545,7 @@ The GNU General Public License does not permit incorporating your program into p
 
                                                         <input data-modal-toggle="module-modal" class="unthemed"
                                                             type="button" value="Discard" role="secondary" />
-                                                        <input class="unthemed" type="button" value="Confirm"
+                                                        <input data-modal-toggle="module-modal" data-modal-toggle="module-modal" @click="handleModuleCreation()" class="unthemed" type="button" value="Confirm"
                                                             role="primary" />
                                                     </div>
                                                 </div>
@@ -2650,7 +1568,7 @@ The GNU General Public License does not permit incorporating your program into p
                                                         </p>
                                                         <div @click="handleImageOpen('profile')" class="rounded-image w-16 h-16">
                                                             <div class="flex image-wrapper flexing">
-                                                                <img class="unthemed" alt="" id="profile-picture" onerror="this.onerror=null; this.src='';"/>
+                                                                <img class="unthemed" alt="" id="profile-picture"/>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6 opacity-70 unthemed">
                                                                     <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -2700,11 +1618,11 @@ The GNU General Public License does not permit incorporating your program into p
                             <p class="unthemed font-medium text-lg" id="current-date"></p>
                             <div class="unthemed unavailability text-sm">
                                 <p class="unthemed inline-block text-gray-400 count-down" in="">
-                                    <span class="unthemed" name="days">01</span>
+                                    <span class="unthemed" name="days">00</span>
                                     D
-                                    <span class="unthemed" name="hours">05</span>
+                                    <span class="unthemed" name="hours">00</span>
                                     H
-                                    <span class="unthemed" name="minutes">39</span>
+                                    <span class="unthemed" name="minutes">00</span>
                                     M
                                 </p>
                             </div>
@@ -2720,9 +1638,9 @@ The GNU General Public License does not permit incorporating your program into p
                             <div>
                                 <span
                                     class="unthemed block-text mt-2 text-2xs text-end tracking-wider text-secondary"><a
-                                        href="#" class="unthemed">05</a>/21</span>
+                                        href="#" class="unthemed">00</a>/00</span>
                                 <input class="unthemed w-full mt-1 display-only" type="range" name="archives-showcase"
-                                    role="primary" value="20" />
+                                    role="primary" value="0" />
                             </div>
                             <div class="mt-1 flex">
                                 <div class="rounded-image relative z-30 w-7 h-7 border-2 border-light dark:border-dark">
@@ -2742,12 +1660,11 @@ The GNU General Public License does not permit incorporating your program into p
                         <div class="unthemed ui-component">
                             <p class="title">
                                 <span class="block-text text-sm font-semibold tracking-wide">Records</span>
-                                <span class="block-text mt-1 font-semibold text-xs opacity-50">Gain confidence and
-                                    momentum by tracking your progress on assignments from the past 7 days</span>
+                                <span class="block-text mt-1 font-semibold text-xs opacity-50">Gain momentum by tracking your progress on assignments from the past 6 months</span>
                             </p>
                             <canvas class="block unavailability chart-container disabled mt-2 w-full h-16"
                                 id="SPC1"></canvas>
-                            <a href="#" class="unthemed block text-end text-xs">See insights</a>
+                            <a @click="handlePageOpening($event, 'S4P2')" href="#" class="unthemed block text-end text-xs">See insights</a>
                         </div>
 
                         <div class="unthemed hidden ui-component">
@@ -2759,18 +1676,11 @@ The GNU General Public License does not permit incorporating your program into p
                             </p>
                             <div class="flex mt-2">
                                 <p class="unthemed date-box">
-                                    <span class="unthemed">10</span>
-                                    <span class="unthemed">wed</span>
+                                    <span class="unthemed">09</span>
+                                    <span class="unthemed">thu</span>
                                 </p>
                                 <p class="block-text pl-3 text-xs text-ellipsis overflow-hidden max-h-[4em]">
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Lorem ipsum dolor sit
-                                    amet, consectetur adipisicing elit.
-                                    Consequuntur in eum molestias aperiam
-                                    veniam, saepe quibusdam provident labore
-                                    doloremque asperiores assumenda quos
-                                    cumque ipsam. A, sapiente blanditiis.
-                                    Maiores, error atque!
+                                    Fundamentals of Programming presentation day!
                                 </p>
                             </div>
                         </div>
@@ -2779,6 +1689,7 @@ The GNU General Public License does not permit incorporating your program into p
             </div>
         </section>
     </main>
+</div>
 </body>
 
 </html> 

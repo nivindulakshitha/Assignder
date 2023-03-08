@@ -2,6 +2,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const uuid = require('uuid');
 
+
 // Expose ipcRenderer to the renderer process
 contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer);
 contextBridge.exposeInMainWorld('uuid', uuid);

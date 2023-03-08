@@ -1377,6 +1377,10 @@ video {
   height: 4rem;
 }
 
+.h-28 {
+  height: 7rem;
+}
+
 .max-h-72 {
   max-height: 18rem;
 }
@@ -1524,6 +1528,10 @@ video {
 
 .w-40 {
   width: 10rem;
+}
+
+.w-28 {
+  width: 7rem;
 }
 
 .min-w-0 {
@@ -3308,6 +3316,11 @@ video {
 .bg-lime-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(101 163 13 / var(--tw-bg-opacity));
+}
+
+.bg-amber-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {

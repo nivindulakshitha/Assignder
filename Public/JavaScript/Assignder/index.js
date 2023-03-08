@@ -62,6 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
         .then((reply) => {
             if (reply) {
                 appData = JSON.parse(reply);
+                vueApp.appdata = appData;
                 switchAppTheme(appData.app.theme);
                 getIntoAssignder();
             } else {
@@ -351,6 +352,9 @@ function submitAssignment() {
                         : false,
                     done: 0,
                 };
+                ipcRenderer.invoke('fs-write', appData.profiles[appData.app.login.profile].path, JSON.stringify(profileData));
+                vueApp.profiledata = profileData;
+
             }
         }
     }
@@ -469,6 +473,9 @@ function setupUiChanges(account) {
     const accountData = appData.accounts[account];
 
     document.querySelector("#\\34  > nav > ul > li.flexing.relative.esc-region > div.rounded-image.w-9.h-9 > img").src = accountData.image;
+    document.querySelector("#S4P7 > fieldset:nth-child(1) > div.rounded-image.w-28.h-28.inline-block > img").src = accountData.image;
+    document.querySelector("#S4P7 > fieldset:nth-child(1) > div:nth-child(3) > span").innerText = account;
+    document.querySelector("#S4P7 > fieldset:nth-child(1) > div:nth-child(3) > p").innerText = appData.app.login.profile;
 }
 
 function profileEdit(uuid) {
@@ -540,10 +547,14 @@ function setUpLogic() {
             for (i = 0; i < Object.keys(appData.profiles).length; i++) {
                 ipcRenderer.invoke('fs-read', appData.profiles[Object.keys(appData.profiles)[i]].path).then(result => {
                     if (result) {
+                        console.log('profile: 1');
                         i = Object.keys(appData.profiles).length;
                         profileData = JSON.parse(result);
+                        vueApp.profiledata =  profileData;
                         document.querySelector("#profile > p").innerText = profileData.self.name;
                         document.querySelector("#profile > div > img").setAttribute('src', profileData.self.image);
+                        document.querySelector("#S4P7 > fieldset:nth-child(2) > table > tbody > tr:nth-child(8) > td > span") = appData.profiles[profileData.self.name].path;
+
 
                         appData.app.login.profile = profileData.self.name;
                         ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
@@ -563,8 +574,100 @@ function setUpLogic() {
             document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click();
         }
     } else {
-        console.log(12);
+        const profileName = appData.app.login.profile;
+        ipcRenderer.invoke('fs-read', appData.profiles[profileName].path).then(result => {
+            console.log('profile: 2');
+            if (result) {
+                profileData = JSON.parse(result);
+                vueApp.profiledata = profileData;
+                document.querySelector("#profile > p").innerText = profileData.self.name;
+                document.querySelector("#profile > div > img").setAttribute('src', profileData.self.image);
+                document.querySelector("#S4P7 > fieldset:nth-child(2) > table > tbody > tr:nth-child(2) > td > span").innerText = profileData.self.abbr;
+                document.querySelector("#S4P7 > fieldset:nth-child(2) > table > tbody > tr:nth-child(8) > td > span").innerText = appData.profiles[profileData.self.name].path;
+
+                appData.app.login.profile = profileData.self.name;
+                ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
+            }
+        })
         sectionOpener(4);
-        document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click();
+        document.querySelector("#\\34  > nav > ul > li:nth-child(2)").click();
     }
+}
+
+function changeProfile() {
+    appData.app.login.profile = document.querySelector("#S4P7 > fieldset:nth-child(2) > table > tbody > tr:nth-child(1) > td > select").value;
+    ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
+}
+
+function openUpdateModule(uuid) {
+    if (uuid) {
+        document.querySelector("#module-modal").setAttribute("target", uuid);
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.col-span-3.input-block.w-full > input").value = profileData.modules[uuid].name;
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.input-block.mb-3 > div").style.borderColor = profileData.modules[uuid].color;
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.input-block.mb-3 > div > img").src = profileData.modules[uuid].image;
+        document.querySelector("#modulecolor-picker").value = profileData.modules[uuid].color;
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(2) > input").value = profileData.modules[uuid].identity;
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(3) > input").value = profileData.modules[uuid].code;
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(4) > input").value = profileData.modules[uuid].credit;
+        if (profileData.modules[uuid].alertify) {
+            document.querySelector("#module-modal > div > div > div > div > div.flex.flexing > div > button").classList.add("toggled");
+        } else {
+            document.querySelector("#module-modal > div > div > div > div > div.flex.flexing > div > button").classList.remove("toggled");
+        }
+
+    } else {
+        document.querySelector("#module-modal").removeAttribute("target");
+        document.querySelector("#module-modal").setAttribute("target", uuid);
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.col-span-3.input-block.w-full > input").value = "";
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.input-block.mb-3 > div").style.borderColor = "#000";
+        document.querySelector("#module-modal > div > div > div > div > div:nth-child(1) > div.input-block.mb-3 > div > img").removeAttribute("src");
+        document.querySelector("#modulecolor-picker").value = "#000";
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(2) > input").value = "";
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(3) > input").value = "";
+        document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(4) > input").value = "";
+        document.querySelector("#module-modal > div > div > div > div > div.flex.flexing > div > button").classList.add("toggled");
+    }
+}
+
+function updateModule(moduledata) {
+    const name = moduledata.typing;
+    const image =  moduledata.tempImg;
+    const color = moduledata.color;
+    const identity = document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(2) > input").value;
+    const code = document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(3) > input").value;
+    const credits = document.querySelector("#module-modal > div > div > div > div > div.grid.grid-cols-4.flexing.mb-3 > div:nth-child(4) > input").value;
+    const alertify = document.querySelector("#module-modal > div > div > div > div > div.flex.flexing > div > button");
+
+    if (name.length > 0 && identity.length > 0 && code.toString().length > 0 && credits.toString().length > 0) {
+        if (appData.app.login.profile != "") {
+            profileData.modules[generateUUID()] = {
+                name: capitalizeEachWord(name),
+                color: color.toUpperCase(),
+                identity: identity.toUpperCase(),
+                code: code,
+                credit: credits,
+                image: image,
+                alertify: alertify.classList.contains("toggled") ? true : false,
+                notify: 0,
+                wait: 0,
+            }
+
+            ipcRenderer.invoke('fs-write', appData.profiles[appData.app.login.profile].path, JSON.stringify(profileData));
+            vueApp.profiledata = profileData;
+        }
+    } else {
+        console.log(name.length, identity.length, code.toString().length, credits.toString().length)
+    }
+}
+
+
+function capitalizeEachWord(str) {
+    const words = str.split(' ');
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    return capitalizedWords.join(' ');
+  }
+  
+
+function updateAssignmentTime(id, value) {
+    document.querySelector(id).innerText = value;
 }
