@@ -398,15 +398,15 @@ div[role="side-panel"] .count-down span:not(:first-child) {
     @apply mb-5 text-sm font-normal text-gray-500 dark:text-gray-400;
 }
 
-.popup-block:not(#assignment-modal, #module-modal) svg {
+.popup-block:not(#assignment-modal, #module-modal, #profile-modal) svg {
     @apply mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200;
 }
 
-.assignmentmodal-wrapper, .modulemodal-wrapper {
+.assignmentmodal-wrapper, .modulemodal-wrapper,  .profilemodal-wrapper {
     @apply relative w-full h-full max-w-md md:h-auto;
 }
 
-.assignmentmodal-container, .modulemodal-container {
+.assignmentmodal-container, .modulemodal-container, .profilemodal-container {
     @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
 }
 
@@ -436,4 +436,20 @@ input.datepicker-element {
 
 input.datepicker-element.datepicker-input {
     @apply rounded-full border-dark border dark:border-gray-500;
+}
+
+.page[name="settings"]#S4P7 table {
+    @apply w-full border-separate table-auto;
+}
+
+.page[name="settings"]#S4P7 table tr {
+    @apply mb-2;
+}
+
+.page[name="settings"]#S4P7 tbody tr th {
+    @apply inline-block w-2/6 opacity-70 bg-gray-200 dark:bg-gray-700 p-2 rounded-l-md font-medium text-sm text-start;
+}
+
+.page[name="settings"]#S4P7 tbody tr td {
+    @apply inline-flex w-3/5 bg-gray-100 dark:bg-gray-600 p-2 rounded-r-md font-light text-sm;
 }

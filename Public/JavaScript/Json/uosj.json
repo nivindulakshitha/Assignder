@@ -1,9 +1,5 @@
 {
-    "app": {
-        "alertify": false
-    },
     "self": {
-        "uuid": "",
         "refacc": "",
         "name": "",
         "abbr":  "",

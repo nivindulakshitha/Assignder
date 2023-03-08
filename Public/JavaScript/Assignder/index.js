@@ -11,12 +11,12 @@ function pageOpener(event, sectionId) {
     makeSettimeout(1000, loadingComponent, false);
 
     setTimeout(() => {
-        if (activePage !== undefined) {
+        if (activePage != undefined) {
             toggleFrom.classList.add("hidden");
             toggleFrom.classList.remove("grid");
         }
 
-        if (navigationTarget !== undefined) {
+        if (navigationTarget != undefined) {
             navigationTarget.setAttribute("active", "false"); // Ref: Assignder/declarations
         }
 
@@ -363,6 +363,10 @@ function getIntoAssignder() {
     } else {
         sectionOpener(2);
     }
+
+    /* sectionOpener(4);
+    document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click(); // Open home section */
+
 }
 
 // Section operner
@@ -409,8 +413,7 @@ function signupStepOn(direction, object) {
 
                 ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData)).then(reply => {
                     if (reply) {
-                        sectionOpener(4);
-                        document.querySelector("#\\34  > nav > ul > li:nth-child(2)").click(); // Open home section
+                        setUpLogic();
                     }
                 });
             }
@@ -438,11 +441,10 @@ function signinStepOn(direction, object) {
     if (direction == 1) {
         if ( object.username.length >= 5 && Object.keys(appData.accounts).includes(object.username.toLowerCase()) ) {
             if (object.password.length >= 5 && appData.accounts[object.username].password == object.password) {
-                sectionOpener(4);
-                document.querySelector("#\\34  > nav > ul > li:nth-child(2)").click(); // Open home section
                 appData.app.login.state = true;
                 appData.app.login.account = object.username;
                 setupUiChanges(appData.app.login.account);
+                setUpLogic();
             }
         }
 
@@ -467,4 +469,102 @@ function setupUiChanges(account) {
     const accountData = appData.accounts[account];
 
     document.querySelector("#\\34  > nav > ul > li.flexing.relative.esc-region > div.rounded-image.w-9.h-9 > img").src = accountData.image;
+}
+
+function profileEdit(uuid) {
+    if (uuid) {
+        document.querySelector("#profile-picture").setAttribute('src',  appData.profiles[uuid].image);
+        document.querySelector("#profile-modal").setAttribute("target", uuid);
+        document.querySelector("#profile-modal > div > div > div > div > div.grid.grid-cols-4.flexing > div.col-span-3.input-block.w-full > input").value = uuid;
+        document.querySelector("#profile-modal > div > div > div > div > div.grid.grid-cols-4.flexing > div.col-span-3.input-block.w-full > input").disabled = true;
+    } else {
+        document.querySelector("#profile-picture").removeAttribute('src');
+        document.querySelector("#profile-modal").removeAttribute("target");
+        document.querySelector("#profile-modal > div > div > div > div > div.grid.grid-cols-4.flexing > div.col-span-3.input-block.w-full > input").value = "";
+        document.querySelector("#profile-modal > div > div > div > div > div.grid.grid-cols-4.flexing > div.col-span-3.input-block.w-full > input").disabled = false;
+    }
+}
+
+function profileSubmit() {
+    const target = document.querySelector("#profile-modal").getAttribute("target");
+    const imgPath  = document.querySelector("#profile-picture").getAttribute('src');
+    var profileName = document.querySelector("#profile-modal > div > div > div > div > div.grid.grid-cols-4.flexing > div.col-span-3.input-block.w-full > input").value;
+    profileName = profileName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+
+    const abbrivation = profileName.split(" ").map((word) => word.charAt(0)).join("").toUpperCase();
+
+    if (target) {
+        appData.profiles[target].image = imgPath;
+        ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
+    } else {
+        const profileDataTemplate = {
+            "self": {
+                "refacc": "",
+                "name": "",
+                "abbr":  "",
+                "image": "",
+                "alertify": {
+                    "hereon": true,
+                    "logs": true,
+                    "privacy": false
+                }
+            },
+            "modules": {},
+            "assignments": {}
+        }
+        if (!Object.keys(appData.profiles).includes(profileName)) {
+                ipcRenderer.invoke("make-dir", 'documents', 'Assignder').then(result => {
+                if (result != undefined) {
+                    appData.profiles[profileName] = {
+                        refacc: appData.app.login.account,
+                        image: imgPath,
+                        abbrivation: abbrivation,
+                        path: result + `/${abbrivation}.json`
+                    };
+                    ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
+                    profileDataTemplate.self.refacc = appData.app.login.account;
+                    profileDataTemplate.self.name = profileName;
+                    profileDataTemplate.self.abbr = abbrivation;
+                    profileDataTemplate.self.image = imgPath;
+                    ipcRenderer.invoke('fs-write', result + `/${abbrivation}.json`, JSON.stringify(profileDataTemplate));
+                }
+            });
+        }
+    }
+}
+
+function setUpLogic() {
+    console.log('setup logic');
+    if (appData.app.login.profile == "") {
+        if (Object.keys(appData.profiles).length != 0) {
+            for (i = 0; i < Object.keys(appData.profiles).length; i++) {
+                ipcRenderer.invoke('fs-read', appData.profiles[Object.keys(appData.profiles)[i]].path).then(result => {
+                    if (result) {
+                        i = Object.keys(appData.profiles).length;
+                        profileData = JSON.parse(result);
+                        document.querySelector("#profile > p").innerText = profileData.self.name;
+                        document.querySelector("#profile > div > img").setAttribute('src', profileData.self.image);
+
+                        appData.app.login.profile = profileData.self.name;
+                        ipcRenderer.invoke('fs-write', "./Public/JavaScript/Json/appdata.json", JSON.stringify(appData));
+                    }
+                })
+            }
+
+            // If no profile valied
+            if (profileData == {}) {
+                console.log('No profile is valied');
+                sectionOpener(4);
+                document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click();
+            }
+        } else {
+            console.log('No profile is identified');
+            sectionOpener(4);
+            document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click();
+        }
+    } else {
+        console.log(12);
+        sectionOpener(4);
+        document.querySelector("#\\34  > nav > ul > li:nth-child(10)").click();
+    }
 }

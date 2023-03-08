@@ -318,19 +318,12 @@
 
                     <div class="flex-grow"></div>
 
-                    <div class="flex flexing esc-region" id="profile" type="button" role="secondary">
+                    <div class="flex flexing esc-region pr-3" id="profile">
                         <div class="rounded-image relative w-5 h-5">
-                            <img class="unthemed" src="../Images/university logo.png" alt="" />
+                            <img class="unthemed" alt="" />
                         </div>
                         <p class="unthemed text-sm inline-block capitalize">
-                            university of sri jayewardenepura
                         </p>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="w-4 h-4 unthemed inline-block">
-                            <path class="unthemed fill-dark dark:fill-light" fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                clip-rule="evenodd" />
-                        </svg>
                     </div>
                 </div>
 
@@ -2024,6 +2017,141 @@ The GNU General Public License does not permit incorporating your program into p
                         </div>
 
                         <div class="hidden page unavailability" name="settings" id="S4P7">
+                            <fieldset class="unthemed flex flexing" style="justify-content: flex-start;">
+                                <legend class="unthemed">Account</legend>
+                                <div class="rounded-image w-24 h-24 border-4 border-success inline-block">
+                                    <img src="../Images/person.jpg" alt="" class="rounded-full" />
+                                </div>
+                                <div>
+                                    <span class="unthemed text block text-xl tracking-wider font-semibold">nivindu_lakshitha</span>
+                                    <p class="unthemed text block opacity-50 text-base">University of Sri Jayewardenepura</p>
+                                    <div class="my-2 buttons-holder">
+                                        <input @click="handleLogOut()" class="unthemed" type="button" value="Log out" role="danger" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                            
+                            <fieldset class="unthemed flex flexing" style="justify-content: flex-start;">
+                                <legend class="unthemed">Profile</legend>
+                                <table name="settings-profile" data-running="true">
+                                    <tbody class="grid grid-cols-2">
+                                        <tr class="col-span-2">
+                                            <th class="unthemed" style="max-width: 16.5%;">
+                                                Select
+                                            </th>
+                                            <td class="unthemed unavailability" style="width: calc(100% - 20%); padding: 5.5px 12px;">
+                                                <select class="unthemed" name="" id="" style="padding:  2.5px 50px 2.5px 10px;">
+                                                    <option value="1">University of Sri Jayewardenepura</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">
+                                                Abbrivation
+                                            </th>
+                                            <td class="unthemed flexing" style="
+                                                        display: inline-flex;
+                                                        justify-content: flex-start;
+                                                    ">
+                                             <span class="unthemed text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">
+                                                Semester
+                                            </th>
+                                            <td class="unthemed unavailability" style="padding: 5px 10px;">
+                                                <select class="unthemed" name="" id="" style="padding:  2.5px 50px 2.5px 10px;">
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Encrypt</th>
+                                            <td class="unthemed">
+                                                <label
+                                                    class="unthemed relative inline-flex items-center cursor-pointer outline-none">
+                                                    <input type="checkbox" value="" class="unthemed sr-only peer"
+                                                        checked />
+                                                    <div class="unthemed w-9 h-5 peer checkbox">
+                                                    </div>
+                                                    <span
+                                                        class="unthemed ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enabled</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="unthemed">Year</th>
+                                            <td class="unthemed unavailability">
+                                                04
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>New</th>
+                                            <td class="unthemed" style="padding: 3.5px 12px;">
+                                                <div class="buttons-holder">
+                                                    <input @click="handleProfileEdit()" data-modal-target="profile-modal"
+                                                    data-modal-toggle="profile-modal" class="unthemed" type="button" value="Create" role="secondary" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Update</th>
+                                            <td class="unthemed" style="padding: 2px 10px;">
+                                                <div class="buttons-holder">
+                                                    <button @click="handleProfileEdit('Faculty Of Technology')" data-modal-target="profile-modal"  data-modal-toggle="profile-modal" class="unthemed flexing" type="button" role="secondary">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-4 h-4 unthemed">
+                                                            <path class="unthemed stroke-dark dark:stroke-light"
+                                                                fill-rule="evenodd"
+                                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="col-span-2">
+                                            <th class="unthemed" style="max-width: 16.5%;">
+                                                Source
+                                            </th>
+                                            <td class="unthemed" style="width: calc(100% - 20%)">
+                                                <span class="unthemed text-sm font-medium text-gray-900 dark:text-gray-300 truncate">file:///C:/Users/Nivindu%20Lakshitha/Documents/Adobe/After%20Effects%20CC%202017/</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+
+                            <fieldset class="unthemed">
+                                <legend class="unthemed">Assignments</legend>
+                                <table name="settings-profile" data-running="true">
+                                    <tbody class="grid grid-cols-2">
+                                        <tr>
+                                            <th class="unthemed">
+                                                Attention
+                                            </th>
+                                            <td class="unthemed" style="padding: 5px 12px;">
+                                                <select class="unthemed" name="" id="" style="padding:  2.5px 50px 2.5px 10px;">
+                                                    <option value="1">1 Day</option>
+                                                    <option value="2">3 Days</option>
+                                                    <option value="3">5 Days</option>
+                                                    <option value="4">7 Days</option>
+                                                </select>
+                                                <span class="unthemed text opacity-70 mx-3 my-auto truncate">Before</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
                         </div>
 
                         <div class="flexing grid" name="popups-holder" id="S4P8">
@@ -2500,6 +2628,59 @@ The GNU General Public License does not permit incorporating your program into p
                                                         <input data-modal-toggle="module-modal" class="unthemed"
                                                             type="button" value="Discard" role="secondary" />
                                                         <input class="unthemed" type="button" value="Confirm"
+                                                            role="primary" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="unthemed popup-block hidden h-modal" id="profile-modal" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="profilemodal-wrapper">
+                                    <div class="profilemodal-container">
+                                        <div class="p-6 lg:px-8">
+                                            <div class="unthemed" role="form">
+                                                <div class="grid grid-cols-4 flexing">
+                                                    <div class="input-block mb-3">
+                                                        <p class="unthemed input-heading">
+                                                            Display Image
+                                                        </p>
+                                                        <div @click="handleImageOpen('profile')" class="rounded-image w-16 h-16">
+                                                            <div class="flex image-wrapper flexing">
+                                                                <img class="unthemed" alt="" id="profile-picture" onerror="this.onerror=null; this.src='';"/>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor" class="w-6 h-6 opacity-70 unthemed">
+                                                                    <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
+                                                                        stroke-linejoin="round"
+                                                                        d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                                                                    <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
+                                                                        stroke-linejoin="round"
+                                                                        d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-span-3 input-block w-full">
+                                                        <p class="unthemed input-heading">
+                                                            Name
+                                                        </p>
+                                                        <input @input="handleModuleNameInput()"
+                                                            v-model="tabs.settings.new.profile.typing" type="text"
+                                                            class="unthemed w-full px-1 bg-transparent text-sm capitalize my-3"
+                                                            placeholder="Profile name" name="" id=""
+                                                            style="padding: 9px;" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flexing">
+                                                    <div class="flex flexing buttons-holder">
+                                                        <input data-modal-toggle="profile-modal" class="unthemed"
+                                                            type="button" value="Discard" role="secondary" />
+                                                        <input @click="handleProfileSubmit()"  data-modal-toggle="profile-modal" data-modal-toggle="profile-modal" class="unthemed" type="button" value="Confirm"
                                                             role="primary" />
                                                     </div>
                                                 </div>

@@ -1,8 +1,7 @@
-const { app, BrowserWindow, ipcMain,dialog } = require("electron");
+const { app, BrowserWindow, ipcMain,dialog, nativeImage } = require("electron");
 const path = require("path");
 const fs = require('fs').promises;
 const appJson = require("../Json/appdata.json")
-require("electron-reloader")(module);
 
 var appTheme = appJson.app.theme;
 var assignder;
@@ -87,6 +86,14 @@ ipcMain.handle('select-image', async (event) => {
 	}).catch(error => {
 		return false;
 	});
+});
+
+ipcMain.handle('make-dir', async (event, dirpath, dirname) => {
+	const exePath =  path.join(app.getPath(dirpath), dirname);
+	fs.mkdir(exePath, { recursive: true }, (err) => {
+		if (err) throw err;
+	});
+	return exePath;
 });
 
 /*

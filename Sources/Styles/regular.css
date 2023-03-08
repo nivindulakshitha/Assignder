@@ -523,3 +523,17 @@ input[type="color" i]::-webkit-color-swatch-wrapper {
     width: 100% !important;
     height: 100% !important;
 }
+
+.rounded-image .image-wrapper {
+    cursor: pointer;
+    position: relative;
+}
+
+.rounded-image .image-wrapper * {
+    display: block;
+    position: absolute;
+}
+
+#alttext-container {
+    display: none !important;
+}
