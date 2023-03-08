@@ -5897,6 +5897,10 @@ fieldset legend {
   margin-bottom: 0.5rem;
 }
 
+.page[name="about"]#S4P6 {
+  grid-template-rows: fit-content(100%) auto;
+}
+
 #S4P5 table[name="alertify-connection"] tbody tr th {
   display: inline-block;
   width: 33.333333%;

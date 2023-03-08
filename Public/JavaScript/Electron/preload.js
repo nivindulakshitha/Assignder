@@ -43,6 +43,6 @@ const updateDate = () => {
 }
 
 // Inter Process Communications
-const ipcThemeChange = () => {
+/* const ipcThemeChange = () => {
     ipcRenderer.send("theme-change", appTheme);
-}
+} */

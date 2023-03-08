@@ -11,22 +11,6 @@
     <link rel="stylesheet" href="../../Sources/Styles/regular.css" />
     <link rel="stylesheet" href="../Styles/tailwindcssout.css" />
 
-    <script async>
-        var appTheme;
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "../JavaScript/Json/app.json", true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
-                appTheme = data.app.theme;
-                document
-                    .getElementsByTagName("html")[0]
-                    .classList.add(appTheme);
-            }
-        };
-        xhr.send();
-    </script>
     <script src="../JavaScript/Assignder/declarations.js" defer></script>
     <script src="../JavaScript/Flowbite/flowbite.min.js" defer></script>
     <script src="../JavaScript/Vue/vue.global.js" defer></script>
@@ -69,20 +53,20 @@
                     </div>
                     <img class="unthemed" alt="" />
                 </div>
-                <div class="flexing" role="form">
-                    <input class="unthemed" type="text" name="username" placeholder="User name" spellcheck="false"
+                <div class="flexing" role="form" target="1">
+                    <input v-model="sections.signin.username" class="unthemed" type="text" name="username" placeholder="User name" spellcheck="false"
                         required />
-                    <input class="hidden unthemed" type="password" name="password" placeholder="Password"
+                    <input v-model="sections.signin.password" class="hidden unthemed" type="password" name="password" placeholder="Password"
                         spellcheck="false" required />
                 </div>
                 <div class="buttons-holder flexing">
-                    <input type="button" value="Back" class="unthemed" role="secondary" />
-                    <input type="button" value="Next" class="unthemed" role="primary" />
+                    <input @click="handleSigninBack()" type="button" value="Back" class="unthemed" role="secondary" />
+                    <input @click="handleSigninNext()" type="button" value="Next" class="unthemed" role="primary" />
                 </div>
                 <div class="footer-note">
                     <p class="text">
                         Has got no account?
-                        <a href="#" class="unthemed">Create one</a>
+                        <a @click="handleSectionOpenening(3)" href="#" class="unthemed">Create one</a>
                     </p>
                 </div>
             </div>
@@ -99,9 +83,9 @@
                         Create your personal account.
                     </p>
                 </div>
-                <div class="rounded-image w-20 h-20">
+                <div @click="handleImageOpen()" class="rounded-image w-20 h-20">
                     <div class="image-wrapper flexing">
-                        <img src="../Images/person.jpg" alt="" id="signup-picture" />
+                        <img :src="this.sections.signup.image" alt="" id="signup-picture" />
                         <svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 opacity-70 unthemed">
                             <path class="unthemed stroke-dark dark:stroke-light" stroke-linecap="round"
@@ -113,31 +97,34 @@
                         </svg>
                     </div>
                 </div>
-                <div class="flexing" role="form">
-                    <input class="unthemed" type="text" name="username" placeholder="User name" spellcheck="false"
+                <div class="flexing" role="form" target="1">
+                    <input v-model="sections.signup.username" class="unthemed" type="text" name="username" placeholder="User name" spellcheck="false"
                         required />
-                    <input class="hidden unthemed" type="password" name="password" placeholder="Password"
+                    <input v-model="sections.signup.password" class="hidden unthemed" type="password" name="password" placeholder="Password"
+                        spellcheck="false" required />
+                    
+                    <input v-model="sections.signup.repassword" class="hidden unthemed" type="password" name="password" placeholder="Repeat password"
                         spellcheck="false" required />
                 </div>
                 <div class="buttons-holder flexing">
-                    <input type="button" value="Back" class="unthemed" role="secondary" />
-                    <input type="button" value="Next" class="unthemed" role="primary" />
+                    <input @click="handleSignupBack()" type="button" value="Back" class="unthemed" role="secondary" />
+                    <input @click="handleSignupNext()" type="button" value="Next" class="unthemed" role="primary" />
                 </div>
                 <div class="footer-note">
                     <p class="text">
                         Already has an account?
-                        <a href="#" class="unthemed">Sign in</a>
+                        <a @click="handleSectionOpenening(2)" href="#" class="unthemed">Sign in</a>
                     </p>
                 </div>
             </div>
         </section>
 
-        <section class="grid unthemed" featuring="application-interface" id="4">
+        <section class="hidden unthemed" featuring="application-interface" id="4">
             <nav>
                 <ul class="unthemed flexing">
                     <li class="flexing relative esc-region">
                         <div class="rounded-image w-9 h-9">
-                            <img src="../Images/person.jpg" alt="" class="rounded-full" />
+                            <img alt="" class="rounded-full" />
                         </div>
                         <div id="account-indicator" target="normal"></div>
                     </li>
@@ -353,7 +340,7 @@
                             <div class="flexing relative assignment-block" name="new-assignment">
                                 <div class="backdrop z-10"></div>
                                 <div class="flex flexing buttons-holder">
-                                    <input data-modal-target="assignment-modal" data-modal-toggle="assignment-modal"
+                                    <input @click="handleNewAssignmentCreate()" data-modal-target="assignment-modal" data-modal-toggle="assignment-modal"
                                         class="relative z-20 unthemed" type="button" value="Create" role="secondary" />
                                 </div>
                             </div>
@@ -413,7 +400,7 @@ The assignment requires a thorough understanding of the course material and care
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <input data-modal-target="cancel-delete"
+                                                <input @click="handleAssignmentDeleteRequest()" data-modal-target="cancel-delete"
                                                     data-modal-toggle="cancel-delete" class="unthemed" type="button"
                                                     value="Delete" role="danger" />
                                                 <input class="unthemed" type="button" value="Done" role="primary" />
@@ -1722,8 +1709,7 @@ The assignment requires a thorough understanding of the course material and care
                             </fieldset>
                         </div>
 
-                        <div class="hidden grid-rows-[fit-content(100%)_auto] page unavailability" name="about"
-                            id="S4P6">
+                        <div class="hidden page unavailability" name="about" id="S4P6">
                             <fieldset class="unthemed">
                                 <legend class="unthemed">Developers</legend>
                                 <div class="flexing unthemed view-box">
@@ -1781,6 +1767,7 @@ The assignment requires a thorough understanding of the course material and care
                                     </div>
                                 </div>
                             </fieldset>
+
                             <fieldset class="unthemed">
                                 <legend class="unthemed">License</legend>
                                 <textarea
@@ -2199,9 +2186,6 @@ The GNU General Public License does not permit incorporating your program into p
                                                                     <option value="23">
                                                                         23
                                                                     </option>
-                                                                    <option value="24">
-                                                                        24
-                                                                    </option>
                                                                 </select>
                                                                 <span class="unthemed p-3">:</span>
                                                                 <select name="" id="" class="unthemed">
@@ -2395,7 +2379,6 @@ The GNU General Public License does not permit incorporating your program into p
                                                     Module
                                                 </p>
                                                 <select name="" id="" class="unthemed w-full mb-3">
-                                                    <option value="0"></option>
                                                 </select>
 
                                                 <p class="unthemed input-heading">
@@ -2420,7 +2403,7 @@ The GNU General Public License does not permit incorporating your program into p
 
                                                         <input data-modal-toggle="assignment-modal" class="unthemed"
                                                             type="button" value="Discard" role="secondary" />
-                                                        <input class="unthemed" type="button" value="Confirm"
+                                                        <input @click="handleAssignmentSubmit()" class="unthemed" type="button" value="Confirm"
                                                             role="primary" />
                                                     </div>
                                                 </div>
@@ -2617,4 +2600,4 @@ The GNU General Public License does not permit incorporating your program into p
     </main>
 </body>
 
-</html>
+</html> 

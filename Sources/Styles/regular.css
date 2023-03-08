@@ -168,6 +168,22 @@ section[featuring="loading-component"] img {
 }
 
 /* application-signing */
+section[featuring="application-signup"] div[role="form"] * {
+    display: none;
+}
+
+section[featuring="application-signup"] div[role="form"][target="1"] input:nth-child(1) {
+    display: block;
+}
+
+section[featuring="application-signup"] div[role="form"][target="2"] input:nth-child(2) {
+    display: block;
+}
+
+section[featuring="application-signup"] div[role="form"][target="3"] input:nth-child(3) {
+    display: block;
+}
+
 section[featuring="application-signup"] div .rounded-image .image-wrapper {
     cursor: pointer;
     position: relative;
@@ -176,6 +192,18 @@ section[featuring="application-signup"] div .rounded-image .image-wrapper {
 section[featuring="application-signup"] div .rounded-image .image-wrapper * {
     display: block;
     position: absolute;
+}
+
+section[featuring="application-signin"] div[role="form"] * {
+    display: none;
+}
+
+section[featuring="application-signin"] div[role="form"][target="1"] input:nth-child(1) {
+    display: block;
+}
+
+section[featuring="application-signin"] div[role="form"][target="2"] input:nth-child(2) {
+    display: block;
 }
 
 /* application-interface */

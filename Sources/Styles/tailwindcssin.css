@@ -336,6 +336,10 @@ fieldset legend {
     @apply mb-2;
 }
 
+.page[name="about"]#S4P6 {
+    @apply grid-rows-[fit-content(100%)_auto];
+}
+
 #S4P5 table[name="alertify-connection"] tbody tr th {
     @apply inline-block w-2/6 opacity-70 bg-gray-200 dark:bg-gray-700 p-2 rounded-l-md font-medium text-sm text-start;
 }

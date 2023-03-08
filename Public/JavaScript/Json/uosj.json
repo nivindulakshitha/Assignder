@@ -1,0 +1,36 @@
+{
+    "app": {
+        "alertify": false
+    },
+    "self": {
+        "uuid": "",
+        "refacc": "",
+        "name": "",
+        "abbr":  "",
+        "image": "",
+        "alertify": {
+            "hereon": true,
+            "logs": true,
+            "privacy": false
+        }
+    },
+    "modules": {"" : {
+        "refpro": "",
+        "image": "",
+        "name": "",
+        "color": "",
+        "identity": "",
+        "code": 0,
+        "credit": 0,
+        "alertify": true
+    }},
+    "assignments": {"" : {
+        "refpro": "",
+        "refmod": "",
+        "title": "",
+        "due": 0,
+        "summary": "",
+        "alertify": true,
+        "done": 0
+    }}
+}

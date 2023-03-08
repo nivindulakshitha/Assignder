@@ -1,0 +1,18 @@
+{
+  "name": "alertify",
+  "productName": "Alertify",
+  "version": "1.0.0-alpha",
+  "description": "",
+  "main": "Content\\index.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&&electron ."
+  },
+  "author": "Alpha CodeNox",
+  "license": "GNU",
+  "devDependencies": {
+    "electron": "^22.1.0"
+  },
+  "dependencies": {
+    "electron-reloader": "^1.2.3"
+  }
+}
